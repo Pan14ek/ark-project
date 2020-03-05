@@ -1,0 +1,14 @@
+CREATE TABLE `ark`.`users` (
+  `id_user` BIGINT NOT NULL AUTO_INCREMENT,
+  `First_name` VARCHAR(45) NOT NULL,
+  `Last_name` VARCHAR(45) NOT NULL,
+  `Login` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_user`),
+  UNIQUE INDEX `id_user_UNIQUE` (`id_user` ASC) VISIBLE,
+  UNIQUE INDEX `Login_UNIQUE` (`Login` ASC) VISIBLE,
+  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
