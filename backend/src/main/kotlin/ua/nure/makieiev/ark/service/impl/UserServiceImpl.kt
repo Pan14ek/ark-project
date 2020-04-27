@@ -14,8 +14,8 @@ import ua.nure.makieiev.ark.service.UserService
 import java.util.*
 
 @Service(value = "userService")
-class UserServiceImpl @Autowired constructor(private var userRepository: UserRepository,
-                                             private var bcryptEncoder: BCryptPasswordEncoder) : UserService, UserDetailsService {
+class UserServiceImpl @Autowired constructor(private val userRepository: UserRepository,
+                                             private val bcryptEncoder: BCryptPasswordEncoder) : UserService, UserDetailsService {
 
     override fun findById(id: Long): Optional<User> {
         return userRepository.findById(id)

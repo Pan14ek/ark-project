@@ -17,4 +17,10 @@ data class PointConfig(@Id
                        var defaultPoints: Int? = null,
                        @Column(name = "Extra_points")
                        var extraPoints: Int? = null
-)
+) {
+    override fun toString(): String {
+        return "PointConfig(id=$id," +
+                " defaultPoints=$defaultPoints," +
+                " extraPoints=$extraPoints)"
+    }
+}

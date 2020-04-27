@@ -26,8 +26,8 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/worklog")
-class WorkLogController @Autowired constructor(var workLogService: WorkLogService,
-                                               var userService: UserService) {
+class WorkLogController @Autowired constructor(private val workLogService: WorkLogService,
+                                               private val userService: UserService) {
 
     @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/{id}")

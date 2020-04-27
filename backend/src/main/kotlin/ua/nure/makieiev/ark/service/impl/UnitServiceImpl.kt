@@ -10,7 +10,7 @@ import ua.nure.makieiev.ark.service.UnitService
 import java.util.*
 
 @Service
-class UnitServiceImpl @Autowired constructor(var unitRepository: UnitRepository) : UnitService {
+class UnitServiceImpl @Autowired constructor(private val unitRepository: UnitRepository) : UnitService {
 
     override fun save(unit: Unit): Unit {
         try {

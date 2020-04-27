@@ -28,4 +28,8 @@ data class WorkLog(@Id
                    @ManyToOne(fetch = FetchType.LAZY)
                    @JoinColumn(name = "Id_user")
                    var user: User? = null
-)
+) {
+    override fun toString(): String {
+        return "WorkLog(id=$id, workDate=$workDate, amountPoints=$amountPoints, user=$user)"
+    }
+}

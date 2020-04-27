@@ -8,7 +8,7 @@ import ua.nure.makieiev.ark.service.PointConfigService
 import java.util.*
 
 @Service
-class PointConfigServiceImpl @Autowired constructor(var pointConfigRepository: PointConfigRepository) : PointConfigService {
+class PointConfigServiceImpl @Autowired constructor(private val pointConfigRepository: PointConfigRepository) : PointConfigService {
 
     override fun findById(id: Long): Optional<PointConfig> {
         return pointConfigRepository.findById(id)

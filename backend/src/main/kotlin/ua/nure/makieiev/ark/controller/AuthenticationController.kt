@@ -23,9 +23,9 @@ import ua.nure.makieiev.ark.service.UserService
 
 @RestController
 @RequestMapping("/user")
-class AuthenticationController @Autowired constructor(var authenticationManager: AuthenticationManager,
-                                                      var jwtTokenUtil: TokenProvider,
-                                                      var userService: UserService) {
+class AuthenticationController @Autowired constructor(private val authenticationManager: AuthenticationManager,
+                                                      private val jwtTokenUtil: TokenProvider,
+                                                      private val userService: UserService) {
 
     @PostMapping("/signIn")
     fun signIn(@RequestBody loginUser: LoginUser, bindingResult: BindingResult): ResponseEntity<Any> {

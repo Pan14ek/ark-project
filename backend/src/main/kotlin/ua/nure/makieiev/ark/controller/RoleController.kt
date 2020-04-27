@@ -22,8 +22,8 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/role")
-class RoleController @Autowired constructor(var roleService: RoleService,
-                                            var roleConverter: RoleConverter) {
+class RoleController @Autowired constructor(private val roleService: RoleService,
+                                            private val roleConverter: RoleConverter) {
 
     @PreAuthorize("hasRole('Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])

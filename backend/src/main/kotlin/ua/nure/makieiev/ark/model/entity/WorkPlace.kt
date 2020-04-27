@@ -26,4 +26,8 @@ data class WorkPlace(
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "Id_unit")
         var unit: Unit? = null
-)
+) {
+    override fun toString(): String {
+        return "WorkPlace(id=$id, title=$title, size=$size, unit=$unit)"
+    }
+}

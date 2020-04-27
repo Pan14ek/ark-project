@@ -16,8 +16,8 @@ import java.util.*
 
 @RestController
 @RequestMapping("/user")
-class UserController @Autowired constructor(var userService: UserService,
-                                            var userConverter: UserConverter) {
+class UserController @Autowired constructor(private val userService: UserService,
+                                            private val userConverter: UserConverter) {
 
     @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/{id}")

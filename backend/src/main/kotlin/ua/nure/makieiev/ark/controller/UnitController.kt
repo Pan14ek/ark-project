@@ -25,8 +25,8 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/unit")
-class UnitController @Autowired constructor(var unitService: UnitService,
-                                            var unitConverter: UnitConverter) {
+class UnitController @Autowired constructor(private val unitService: UnitService,
+                                            private val unitConverter: UnitConverter) {
 
     @PreAuthorize("hasRole('Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])

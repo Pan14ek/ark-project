@@ -160,3 +160,6 @@ CREATE TABLE `factory`.`users_personal_schedules`
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8
     COLLATE = utf8_unicode_ci;
+
+ALTER TABLE `factory`.`users_personal_schedules`
+    ADD COLUMN `Confirm` TINYINT(1) NOT NULL AFTER `Work_date`;

@@ -32,4 +32,12 @@ data class Role(
         @OneToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "Id_role")
         var user: User? = null
-)
+) {
+    override fun toString(): String {
+        return "Role(id=$id," +
+                " title=$title," +
+                " symbol=$symbol," +
+                " description=$description," +
+                " user=$user)"
+    }
+}

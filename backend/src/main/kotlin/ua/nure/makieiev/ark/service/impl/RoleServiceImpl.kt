@@ -9,7 +9,7 @@ import ua.nure.makieiev.ark.repository.RoleRepository
 import ua.nure.makieiev.ark.service.RoleService
 
 @Service
-class RoleServiceImpl @Autowired constructor(var roleRepository: RoleRepository) : RoleService {
+class RoleServiceImpl @Autowired constructor(private val roleRepository: RoleRepository) : RoleService {
 
     override fun findByTitle(title: String): Role {
         return roleRepository.findByTitle(title)

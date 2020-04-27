@@ -40,5 +40,18 @@ data class User(@Id
                 var role: Role? = null,
                 @JsonIgnore
                 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-                var workLogs: List<WorkLog> = emptyList()
-)
+                var workLogs: List<WorkLog> = emptyList(),
+                @JsonIgnore
+                @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+                var userPersonalSchedules: List<UserPersonalSchedule> = emptyList()
+) {
+    override fun toString(): String {
+        return "User(id=$id," +
+                " firstName=$firstName," +
+                " lastName=$lastName," +
+                " login=$login," +
+                " email=$email," +
+                " password=$password," +
+                " role=$role)"
+    }
+}

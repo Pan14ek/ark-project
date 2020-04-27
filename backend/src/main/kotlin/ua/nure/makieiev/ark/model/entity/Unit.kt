@@ -28,4 +28,12 @@ data class Unit(
         var status: String? = null,
         @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)
         var workPlaces: List<WorkPlace> = emptyList()
-)
+) {
+    override fun toString(): String {
+        return "Unit(id=$id," +
+                " title=$title," +
+                " description=$description," +
+                " status=$status," +
+                " workPlaces=$workPlaces)"
+    }
+}

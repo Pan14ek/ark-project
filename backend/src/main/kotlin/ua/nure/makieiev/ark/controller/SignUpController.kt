@@ -18,10 +18,10 @@ import ua.nure.makieiev.ark.util.validation.UserValidator
 
 @RestController
 @RequestMapping("/user")
-class SignUpController @Autowired constructor(var userService: UserService,
-                                              var roleService: RoleService,
-                                              var userValidator: UserValidator,
-                                              var userConverter: UserConverter) {
+class SignUpController @Autowired constructor(private val userService: UserService,
+                                              private val roleService: RoleService,
+                                              private val userValidator: UserValidator,
+                                              private val userConverter: UserConverter) {
 
     @PostMapping(value = ["/signUp"], produces = ["application/json"])
     fun signUp(@RequestBody userDto: UserDto): ResponseEntity<Any> {

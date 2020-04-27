@@ -23,8 +23,8 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/point/config")
-class PointConfigController @Autowired constructor(var pointConfigService: PointConfigService,
-                                                   var pointConfigConverter: PointConfigConverter) {
+class PointConfigController @Autowired constructor(private val pointConfigService: PointConfigService,
+                                                   private val pointConfigConverter: PointConfigConverter) {
 
     @PreAuthorize("hasRole('Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])
