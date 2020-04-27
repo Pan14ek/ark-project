@@ -1,6 +1,5 @@
 package ua.nure.makieiev.ark.model.entity
 
-import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -19,7 +18,7 @@ import javax.validation.constraints.Size
 @Table(name = "users")
 data class User(@Id
                 @GeneratedValue(strategy = GenerationType.IDENTITY)
-                @Column(name = "id_user")
+                @Column(name = "Id_user")
                 var id: Long? = null,
                 @Size(min = 6, max = 45)
                 @Column(name = "First_name")
@@ -37,8 +36,7 @@ data class User(@Id
                 @Column(name = "Password")
                 var password: String? = null,
                 @OneToOne(fetch = FetchType.LAZY)
-                @JoinColumn(name = "id_role")
-                @JsonBackReference
+                @JoinColumn(name = "Id_role")
                 var role: Role? = null,
                 @JsonIgnore
                 @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

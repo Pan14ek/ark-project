@@ -1,6 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
-import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -17,7 +17,7 @@ import javax.validation.constraints.Size
 data class Role(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id_role")
+        @Column(name = "Id_role")
         var id: Long? = null,
         @Size(min = 6, max = 45)
         @Column(name = "Title")
@@ -28,8 +28,8 @@ data class Role(
         @Size(min = 0, max = 200)
         @Column(name = "Description")
         var description: String? = null,
+        @JsonIgnore
         @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "id_user")
-        @JsonManagedReference
+        @JoinColumn(name = "Id_role")
         var user: User? = null
 )

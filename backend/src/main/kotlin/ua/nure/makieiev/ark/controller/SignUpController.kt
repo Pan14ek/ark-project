@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController
 import ua.nure.makieiev.ark.exception.NotUniqueUserFieldException
 import ua.nure.makieiev.ark.exception.response.ConflictException
 import ua.nure.makieiev.ark.model.dto.UserDto
+import ua.nure.makieiev.ark.model.entity.Role
+import ua.nure.makieiev.ark.service.RoleService
 import ua.nure.makieiev.ark.service.UserService
 import ua.nure.makieiev.ark.util.converter.UserConverter
 import ua.nure.makieiev.ark.util.validation.UserValidator
@@ -17,6 +19,7 @@ import ua.nure.makieiev.ark.util.validation.UserValidator
 @RestController
 @RequestMapping("/user")
 class SignUpController @Autowired constructor(var userService: UserService,
+                                              var roleService: RoleService,
                                               var userValidator: UserValidator,
                                               var userConverter: UserConverter) {
 
@@ -35,7 +38,9 @@ class SignUpController @Autowired constructor(var userService: UserService,
     }
 
     private fun signUpProcess(userDto: UserDto): ResponseEntity<Any> {
+        val registeredRole: Role? = roleService.findBySymbol("R")
         var user = userConverter.fillUser(userDto)
+        user.role = registeredRole
         user = userService.save(user)
         return ResponseEntity(user, HttpStatus.OK)
     }

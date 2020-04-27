@@ -5,16 +5,17 @@ import org.springframework.stereotype.Service
 import ua.nure.makieiev.ark.model.entity.PointConfig
 import ua.nure.makieiev.ark.repository.PointConfigRepository
 import ua.nure.makieiev.ark.service.PointConfigService
+import java.util.*
 
 @Service
 class PointConfigServiceImpl @Autowired constructor(var pointConfigRepository: PointConfigRepository) : PointConfigService {
 
-    override fun findById(id: Long): PointConfig {
-        TODO("Not yet implemented")
+    override fun findById(id: Long): Optional<PointConfig> {
+        return pointConfigRepository.findById(id)
     }
 
     override fun save(pointConfig: PointConfig): PointConfig {
-        TODO("Not yet implemented")
+        return pointConfigRepository.save(pointConfig)
     }
 
 }

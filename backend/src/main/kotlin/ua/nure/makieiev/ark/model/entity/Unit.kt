@@ -15,7 +15,7 @@ import javax.validation.constraints.Size
 data class Unit(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id_unit")
+        @Column(name = "Id_unit")
         var id: Long? = null,
         @Size(min = 6, max = 100)
         @Column(name = "Title")
