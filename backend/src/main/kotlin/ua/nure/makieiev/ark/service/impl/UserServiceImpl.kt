@@ -1,8 +1,11 @@
 package ua.nure.makieiev.ark.service.impl
 
-import org.apache.commons.codec.digest.DigestUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import ua.nure.makieiev.ark.exception.NotUniqueUserFieldException
 import ua.nure.makieiev.ark.model.entity.User
@@ -10,8 +13,9 @@ import ua.nure.makieiev.ark.repository.UserRepository
 import ua.nure.makieiev.ark.service.UserService
 import java.util.*
 
-@Service
-class UserServiceImpl @Autowired constructor(var userRepository: UserRepository) : UserService {
+@Service(value = "userService")
+class UserServiceImpl @Autowired constructor(private var userRepository: UserRepository,
+                                             private var bcryptEncoder: BCryptPasswordEncoder) : UserService, UserDetailsService {
 
     override fun findById(id: Long): Optional<User> {
         return userRepository.findById(id)
@@ -23,7 +27,7 @@ class UserServiceImpl @Autowired constructor(var userRepository: UserRepository)
 
     override fun save(user: User): User {
         try {
-            user.password = user.password?.let { encryptPassword(it) }
+            user.password = user.password?.let { bcryptEncoder.encode(it) }
             return userRepository.save(user)
         } catch (exception: DataIntegrityViolationException) {
             throw NotUniqueUserFieldException("The database contains a user field with this information",
@@ -37,12 +41,19 @@ class UserServiceImpl @Autowired constructor(var userRepository: UserRepository)
     }
 
     override fun checkPassword(user: User, password: String): Boolean {
-        return user.password.equals(password)
-
+        val encodePassword: String? = bcryptEncoder.encode(password)
+        return user.password.equals(encodePassword)
     }
 
-    private fun encryptPassword(password: String): String {
-        return DigestUtils.md5Hex(password)
+    override fun loadUserByUsername(username: String?): UserDetails {
+        val user: User = userRepository.findByLogin(username!!)
+        return org.springframework.security.core.userdetails.User(user.login, user.password, getAuthority(user))
+    }
+
+    private fun getAuthority(user: User): Set<SimpleGrantedAuthority>? {
+        val authorities: MutableSet<SimpleGrantedAuthority> = HashSet()
+        authorities.add(SimpleGrantedAuthority("ROLE_" + user.role?.title))
+        return authorities
     }
 
 }

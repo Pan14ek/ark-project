@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -28,6 +29,7 @@ import javax.validation.Valid
 class WorkLogController @Autowired constructor(var workLogService: WorkLogService,
                                                var userService: UserService) {
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         val workLogOptional: Optional<WorkLog> = workLogService.findById(id)
@@ -37,18 +39,21 @@ class WorkLogController @Autowired constructor(var workLogService: WorkLogServic
         throw NotFoundException("Work log did not find by id")
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/all")
     fun findAll(): ResponseEntity<Any> {
         val workLogs: List<WorkLog> = workLogService.findAll()
         return ResponseEntity(workLogs, OK)
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/all/user/{id}")
     fun findAllByUserId(@PathVariable id: Long): ResponseEntity<Any> {
         val workLogs: List<WorkLog> = workLogService.findAllByUserId(id)
         return ResponseEntity(workLogs, OK)
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/user/{id}")
     fun findByUserId(@PathVariable id: Long): ResponseEntity<Any> {
         val workLog: WorkLog? = workLogService.findByUserId(id)
@@ -56,6 +61,7 @@ class WorkLogController @Autowired constructor(var workLogService: WorkLogServic
         throw NotFoundException("Work log did not find by user id")
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])
     fun addUserToWorkLog(@RequestBody @Valid workLogDto: WorkLogDto,
                          bindingResult: BindingResult): ResponseEntity<Any> {

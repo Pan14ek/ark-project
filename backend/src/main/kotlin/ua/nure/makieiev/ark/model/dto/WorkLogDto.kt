@@ -6,7 +6,7 @@ import java.time.LocalDate
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-class WorkLogDto(
+data class WorkLogDto(
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE_TIME)
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

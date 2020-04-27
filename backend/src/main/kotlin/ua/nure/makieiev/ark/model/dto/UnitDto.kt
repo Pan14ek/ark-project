@@ -3,7 +3,7 @@ package ua.nure.makieiev.ark.model.dto
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-class UnitDto(
+data class UnitDto(
         @NotNull
         @Size(min = 5, max = 100)
         val title: String? = null,

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -27,6 +28,7 @@ import javax.validation.Valid
 class UnitController @Autowired constructor(var unitService: UnitService,
                                             var unitConverter: UnitConverter) {
 
+    @PreAuthorize("hasRole('Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])
     fun addUnit(@RequestBody @Valid unitDto: UnitDto, bindingResult: BindingResult): ResponseEntity<Any> {
         try {
@@ -41,6 +43,7 @@ class UnitController @Autowired constructor(var unitService: UnitService,
         }
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/title/{title}")
     fun findByTitle(@PathVariable title: String): ResponseEntity<Any> {
         val unit: Unit? = unitService.findByTitle(title)
@@ -48,6 +51,7 @@ class UnitController @Autowired constructor(var unitService: UnitService,
         throw NotFoundException("Unit did not find by title")
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         val unit: Optional<Unit> = unitService.findById(id)

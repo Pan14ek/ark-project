@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -25,6 +26,7 @@ import javax.validation.Valid
 class PointConfigController @Autowired constructor(var pointConfigService: PointConfigService,
                                                    var pointConfigConverter: PointConfigConverter) {
 
+    @PreAuthorize("hasRole('Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])
     fun addPointConfig(@RequestBody @Valid pointConfigDto: PointConfigDto,
                        bindingResult: BindingResult): ResponseEntity<Any> {
@@ -36,6 +38,7 @@ class PointConfigController @Autowired constructor(var pointConfigService: Point
         }
     }
 
+    @PreAuthorize("hasRole('Administration')")
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
         val pointConfigOptional: Optional<PointConfig> = pointConfigService.findById(id)

@@ -2,8 +2,8 @@ package ua.nure.makieiev.ark.model.dto
 
 import javax.validation.constraints.NotNull
 
-class PointConfigDto(
+data class PointConfigDto(
         @NotNull
-        var defaultPoints: Int? = null,
+        val defaultPoints: Int? = null,
         @NotNull
-        var extraPoints: Int? = null)
+        val extraPoints: Int? = null)

@@ -3,6 +3,7 @@ package ua.nure.makieiev.ark.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.BindingResult
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -24,6 +25,7 @@ import javax.validation.Valid
 class RoleController @Autowired constructor(var roleService: RoleService,
                                             var roleConverter: RoleConverter) {
 
+    @PreAuthorize("hasRole('Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])
     fun addRole(@RequestBody @Valid roleDto: RoleDto, bindingResult: BindingResult): ResponseEntity<Any> {
         try {
@@ -38,6 +40,7 @@ class RoleController @Autowired constructor(var roleService: RoleService,
         }
     }
 
+    @PreAuthorize("hasRole('Administration')")
     @GetMapping("/title/{title}")
     fun findByTitle(@PathVariable title: String): ResponseEntity<Any> {
         val role: Role? = roleService.findByTitle(title)
@@ -47,6 +50,7 @@ class RoleController @Autowired constructor(var roleService: RoleService,
         throw NotFoundException("Role did not find by title")
     }
 
+    @PreAuthorize("hasRole('Administration')")
     @GetMapping("/symbol/{symbol}")
     fun findBySymbol(@PathVariable symbol: String): ResponseEntity<Any> {
         val role: Role? = roleService.findBySymbol(symbol)
