@@ -41,8 +41,7 @@ class UserServiceImpl @Autowired constructor(private var userRepository: UserRep
     }
 
     override fun checkPassword(user: User, password: String): Boolean {
-        val encodePassword: String? = bcryptEncoder.encode(password)
-        return user.password.equals(encodePassword)
+        return bcryptEncoder.matches(password, user.password)
     }
 
     override fun loadUserByUsername(username: String?): UserDetails {

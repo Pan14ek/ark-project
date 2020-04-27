@@ -33,7 +33,7 @@ class AuthenticationController @Autowired constructor(var authenticationManager:
             ResponseEntity(bindingResult, BAD_REQUEST)
         } else {
             val user: User? = userService.findByLogin(loginUser.login)
-            user?.let { checkUserPassword(it, loginUser) }
+            user?.let { return checkUserPassword(it, loginUser) }
             throw NotFoundException("User did not find by login")
         }
     }
@@ -41,7 +41,7 @@ class AuthenticationController @Autowired constructor(var authenticationManager:
     private fun checkUserPassword(user: User, loginUser: LoginUser): ResponseEntity<Any> {
         if (userService.checkPassword(user, loginUser.password)) {
             val token: String = obtainToken(loginUser)
-            return ResponseEntity(AuthToken(token), OK)
+            return ResponseEntity(AuthToken(token, user), OK)
         }
         throw BadRequestException("Login or password is incorrect")
     }
