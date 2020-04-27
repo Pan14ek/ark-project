@@ -11,5 +11,6 @@ Project for university
 5. JWT
 6. Gradle
 7. Kotlin
-8. MySQL
+8. JDK 1.8
+9. MySQL
 
