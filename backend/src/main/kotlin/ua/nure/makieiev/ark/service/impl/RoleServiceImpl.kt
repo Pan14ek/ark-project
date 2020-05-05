@@ -33,7 +33,10 @@ class RoleServiceImpl @Autowired constructor(private val roleRepository: RoleRep
     }
 
     override fun update(role: Role): Boolean {
-        roleRepository.save(role)
+        val updatedRole: Role = role.title?.let { findByTitle(it) }!!
+        updatedRole.symbol = role.symbol
+        updatedRole.description = role.description
+        roleRepository.save(updatedRole)
         return true
     }
 
