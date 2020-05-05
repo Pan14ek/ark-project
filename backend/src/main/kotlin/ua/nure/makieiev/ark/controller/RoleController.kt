@@ -69,12 +69,7 @@ class RoleController @Autowired constructor(private val roleService: RoleService
                 ResponseEntity(bindingResult, HttpStatus.BAD_REQUEST)
             } else {
                 val role = roleConverter.fillRole(roleDto)
-                val updateFlag = roleService.update(role)
-                if (updateFlag) {
-                    ResponseEntity(role, OK)
-                } else {
-                    ResponseEntity(updateFlag, HttpStatus.BAD_REQUEST)
-                }
+                ResponseEntity(roleService.update(role), OK)
             }
         } catch (exception: NotUniqueRoleFieldException) {
             throw ConflictException(exception.message)
@@ -83,9 +78,8 @@ class RoleController @Autowired constructor(private val roleService: RoleService
 
     @PreAuthorize("hasRole('Administration')")
     @GetMapping("/all")
-    fun findAll(): ResponseEntity<Any> {
+    fun findAll(): ResponseEntity<List<Role>> {
         return ResponseEntity(roleService.findAll(), OK)
     }
-
 
 }
