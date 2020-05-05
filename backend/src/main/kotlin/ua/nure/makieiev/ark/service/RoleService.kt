@@ -10,4 +10,8 @@ interface RoleService {
 
     fun save(role: Role): Role
 
+    fun findAll(): List<Role>
+
+    fun update(role: Role): Boolean
+
 }

@@ -44,6 +44,10 @@ class UserServiceImpl @Autowired constructor(private val userRepository: UserRep
         return bcryptEncoder.matches(password, user.password)
     }
 
+    override fun findAll(): List<User> {
+        return userRepository.findAll() as MutableList<User>
+    }
+
     override fun loadUserByUsername(username: String?): UserDetails {
         val user: User = userRepository.findByLogin(username!!)
         return org.springframework.security.core.userdetails.User(user.login, user.password, getAuthority(user))

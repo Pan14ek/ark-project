@@ -15,4 +15,6 @@ interface UserService {
 
     fun checkPassword(user: User, password: String): Boolean
 
+    fun findAll(): List<User>
+
 }

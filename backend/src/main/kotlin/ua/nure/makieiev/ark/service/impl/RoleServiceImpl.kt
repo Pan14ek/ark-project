@@ -28,4 +28,13 @@ class RoleServiceImpl @Autowired constructor(private val roleRepository: RoleRep
         }
     }
 
+    override fun findAll(): List<Role> {
+        return roleRepository.findAll() as MutableList<Role>
+    }
+
+    override fun update(role: Role): Boolean {
+        roleRepository.save(role)
+        return true
+    }
+
 }

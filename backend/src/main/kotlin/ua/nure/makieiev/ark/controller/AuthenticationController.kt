@@ -20,6 +20,7 @@ import ua.nure.makieiev.ark.model.dto.LoginUser
 import ua.nure.makieiev.ark.model.entity.AuthToken
 import ua.nure.makieiev.ark.model.entity.User
 import ua.nure.makieiev.ark.service.UserService
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/user")
@@ -28,7 +29,7 @@ class AuthenticationController @Autowired constructor(private val authentication
                                                       private val userService: UserService) {
 
     @PostMapping("/signIn")
-    fun signIn(@RequestBody loginUser: LoginUser, bindingResult: BindingResult): ResponseEntity<Any> {
+    fun signIn(@RequestBody @Valid loginUser: LoginUser, bindingResult: BindingResult): ResponseEntity<Any> {
         return if (bindingResult.hasErrors()) {
             ResponseEntity(bindingResult, BAD_REQUEST)
         } else {

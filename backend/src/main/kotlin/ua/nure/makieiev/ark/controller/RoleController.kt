@@ -2,6 +2,7 @@ package ua.nure.makieiev.ark.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.validation.BindingResult
@@ -45,7 +46,7 @@ class RoleController @Autowired constructor(private val roleService: RoleService
     fun findByTitle(@PathVariable title: String): ResponseEntity<Any> {
         val role: Role? = roleService.findByTitle(title)
         role?.let {
-            return ResponseEntity(role, HttpStatus.OK)
+            return ResponseEntity(role, OK)
         }
         throw NotFoundException("Role did not find by title")
     }
@@ -55,9 +56,36 @@ class RoleController @Autowired constructor(private val roleService: RoleService
     fun findBySymbol(@PathVariable symbol: String): ResponseEntity<Any> {
         val role: Role? = roleService.findBySymbol(symbol)
         role?.let {
-            return ResponseEntity(role, HttpStatus.OK)
+            return ResponseEntity(role, OK)
         }
         throw NotFoundException("Role did not find by symbol")
     }
+
+    @PreAuthorize("hasRole('Administration')")
+    @PostMapping(value = ["/update"], produces = ["application/json"])
+    fun updateRole(@RequestBody @Valid roleDto: RoleDto, bindingResult: BindingResult): ResponseEntity<Any> {
+        try {
+            return if (bindingResult.hasErrors()) {
+                ResponseEntity(bindingResult, HttpStatus.BAD_REQUEST)
+            } else {
+                val role = roleConverter.fillRole(roleDto)
+                val updateFlag = roleService.update(role)
+                if (updateFlag) {
+                    ResponseEntity(role, OK)
+                } else {
+                    ResponseEntity(updateFlag, HttpStatus.BAD_REQUEST)
+                }
+            }
+        } catch (exception: NotUniqueRoleFieldException) {
+            throw ConflictException(exception.message)
+        }
+    }
+
+    @PreAuthorize("hasRole('Administration')")
+    @GetMapping("/all")
+    fun findAll(): ResponseEntity<Any> {
+        return ResponseEntity(roleService.findAll(), OK)
+    }
+
 
 }
