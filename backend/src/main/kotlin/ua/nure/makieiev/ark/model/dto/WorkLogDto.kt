@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 data class WorkLogDto(
+        val id: Long,
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE_TIME)
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

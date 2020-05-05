@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 data class UnitDto(
+        val id: Long,
         @NotNull
         @Size(min = 5, max = 100)
         val title: String? = null,
