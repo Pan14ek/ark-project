@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {PersonalScheduleService} from '../../services/personal-schedule.service';
 import {ConfirmDto} from '../../../models/dto/ConfirmDto';
 
@@ -13,23 +13,23 @@ export class ConfirmDayComponent implements OnInit {
   scheduleDayId;
   personalScheduleId;
 
-  constructor(private personalScheduleService: PersonalScheduleService, private route: ActivatedRoute) {
+  constructor(private personalScheduleService: PersonalScheduleService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(
+    this.activatedRoute.queryParams.subscribe(
       (queryParam: any) => {
         this.scheduleDayId = queryParam['scheduleDayId'];
         this.personalScheduleId = queryParam['personalScheduleId'];
-        const confirmDto = new ConfirmDto(this.scheduleDayId, this.personalScheduleId, true);
-        this.personalScheduleService.confirmWorkDay(confirmDto).toPromise().then(value => console.log(value));
       }
     );
   }
 
   confirm() {
-    console.log(this.scheduleDayId);
-    console.log(this.personalScheduleId);
+    const confirmDto = new ConfirmDto(this.scheduleDayId, this.personalScheduleId, true);
+    this.personalScheduleService.confirmWorkDay(confirmDto).toPromise().then(value => {
+      this.router.navigate(['/user/schedule']);
+    });
   }
 
 }
