@@ -1,0 +1,68 @@
+<app-adminpanel></app-adminpanel>
+
+
+<div class="buttons">
+  <button class="button is-link" (click)="showAddScheduleDayForm()">
+    {{addScheduleDayFlag ? 'Close' : 'Add schedule day'}}</button>
+  <button class="button is-info" (click)="showAddUserScheduleDayForm()">
+    {{addUserScheduleDayFlag ? 'Close' : 'Add user schedule'}}</button>
+</div>
+
+<section class="section" *ngIf="addScheduleDayFlag">
+  <div class="container">
+
+    <form #addScheduleDayForm (ngSubmit)="addScheduleDay()">
+
+      <div class="field">
+        <label class="label" for="amountDays">Write amount days</label>
+        <div class="control">
+          <input class="input" type="number" id="amountDays" name="amountDays" [(ngModel)]="amountDays"
+                 required>
+        </div>
+      </div>
+
+      <div class="control has-text-centered">
+        <button class="button is-large is-primary" [disabled]="addScheduleDayForm.invalid">Add schedule days</button>
+      </div>
+
+    </form>
+
+  </div>
+</section>
+
+<section class="section" *ngIf="addUserScheduleDayFlag">
+  <div class="container has-text-centered">
+
+    <form #addUserScheduleDay (ngSubmit)="addUserPersonalSchedule()">
+
+      <mat-form-field>
+        <label for="selectedScheduleId">Choose amount days</label>
+        <select matNativeControl [(ngModel)]="selectedScheduleId" id="selectedScheduleId" name="selectedScheduleId">
+          <option value="" selected></option>
+          <option *ngFor="let scheduleDay of schedulesDays" [value]="scheduleDay.id">
+            {{scheduleDay.amountDays}}
+          </option>
+        </select>
+      </mat-form-field>
+
+      <label for="calendar">Choose date</label>
+      <input type="date" name="calendar" id="calendar" [(ngModel)]="workDate" (change)="showWorkDate()">
+
+      <mat-form-field>
+        <label for="selectedUserLogin">Choose amount days</label>
+        <select matNativeControl [(ngModel)]="selectedUserLogin" id="selectedUserLogin" name="selectedUserLogin">
+          <option value="" selected></option>
+          <option *ngFor="let user of users" [value]="user.login">
+            {{user.login}}
+          </option>
+        </select>
+      </mat-form-field>
+
+      <div class="control has-text-centered">
+        <button class="button is-large is-primary" [disabled]="addUserScheduleDay.invalid">Add work day to user</button>
+      </div>
+
+    </form>
+
+  </div>
+</section>

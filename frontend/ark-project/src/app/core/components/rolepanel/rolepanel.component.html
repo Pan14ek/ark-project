@@ -1,0 +1,80 @@
+<app-adminpanel></app-adminpanel>
+
+<section class="section">
+  <div class="container">
+    <div class="buttons">
+      <mat-form-field *ngIf="!addFormFlag">
+        <label for="selectRoles">Choose roles</label>
+        <select matNativeControl [(ngModel)]="selectedRoleTitle" id="selectRoles" (change)="showInfo()">
+          <option value="" selected></option>
+          <option *ngFor="let role of roles | async">
+            {{role.title}}
+          </option>
+        </select>
+      </mat-form-field>
+      <button class="button is-link" (click)="showAddForm()">{{addFormFlag ? 'Close' : 'Add role'}}</button>
+    </div>
+    <form *ngIf="selectedRoleTitle" (ngSubmit)="updateInfo()" #updateForm="ngForm">
+      <div class="field">
+        <label class="label" for="title">Title</label>
+        <div class="control">
+          <input class="input" type="text" id="title" name="title" [(ngModel)]="role.title" [value]="selectedRoleTitle"
+                 required minlength="5" maxlength="45">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="symbol">Symbol</label>
+        <div class="control">
+          <input class="input" type="text" id="symbol" name="symbol" [(ngModel)]="role.symbol" [value]="role.symbol"
+                 required minlength="0" maxlength="45">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="description">Description</label>
+        <div class="control">
+          <textarea class="textarea" id="description" name="description" placeholder="Write your message"
+                    [(ngModel)]="role.description" [value]="role.description" minlength="0" maxlength="250"></textarea>
+        </div>
+      </div>
+
+      <div class="control has-text-centered">
+        <button class="button is-large is-primary" [disabled]="updateForm.invalid">Change</button>
+      </div>
+
+    </form>
+
+    <form *ngIf="addFormFlag" (ngSubmit)="addRole()" #addForm="ngForm">
+      <div class="field">
+        <label class="label" for="addTitle">Title</label>
+        <div class="control">
+          <input class="input" type="text" id="addTitle" name="title" [(ngModel)]="roleTitle" required minlength="5"
+                 maxlength="45">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="addSymbol">Symbol</label>
+        <div class="control">
+          <input class="input" type="text" id="addSymbol" name="symbol" [(ngModel)]="roleSymbol"
+                 required minlength="1" maxlength="45">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="addDescription">Description</label>
+        <div class="control">
+          <textarea class="textarea" id="addDescription" name="description" placeholder="Write your message"
+                    [(ngModel)]="description" minlength="0" maxlength="250"></textarea>
+        </div>
+      </div>
+
+      <div class="control has-text-centered">
+        <button class="button is-large is-primary" [disabled]="addForm.invalid">Add role</button>
+      </div>
+
+    </form>
+
+  </div>
+</section>

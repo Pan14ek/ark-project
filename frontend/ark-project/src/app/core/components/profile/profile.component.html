@@ -1,0 +1,50 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Profile
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="field">
+      <label class="label" for="firstName">First name</label>
+      <div class="control">
+        <input class="input" id="firstName" readonly type="text" [value]="user.firstName">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="lastName">Last name</label>
+      <div class="control">
+        <input class="input" id="lastName" readonly type="text" [value]="user.lastName">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="login">Login</label>
+      <div class="control">
+        <input class="input" id="login" readonly type="text" [value]="user.login">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="email">Email</label>
+      <div class="control">
+        <input class="input" id="email" readonly type="text" [value]="user.email">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="role">Role</label>
+      <div class="control">
+        <input class="input" id="role" readonly type="text" [value]="user.role.title">
+      </div>
+    </div>
+
+  </div>
+</section>

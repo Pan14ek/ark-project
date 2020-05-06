@@ -1,0 +1,5 @@
+.hero {
+  background-image: url("https://images.pexels.com/photos/3105242/pexels-photo-3105242.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260") !important;
+  background-size: cover;
+  background-position: center center;
+}
