@@ -12,7 +12,7 @@ import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 @Entity
-@Table(name = "personal_schedules")
+@Table(name = "personal_schedules", schema = "public")
 data class PersonalSchedule(
         @Id
         @GeneratedValue(strategy = IDENTITY)

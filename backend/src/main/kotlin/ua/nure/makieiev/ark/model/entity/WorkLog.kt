@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
-@Table(name = "work_logs")
+@Table(name = "work_logs", schema = "public")
 data class WorkLog(@Id
                    @GeneratedValue(strategy = GenerationType.IDENTITY)
                    @Column(name = "Id_work_log")

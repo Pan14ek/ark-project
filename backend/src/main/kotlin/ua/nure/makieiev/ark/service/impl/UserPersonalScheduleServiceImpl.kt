@@ -12,7 +12,8 @@ import java.util.*
 class UserPersonalScheduleServiceImpl @Autowired constructor(private val userPersonalScheduleRepository: UserPersonalScheduleRepository) : UserPersonalScheduleService {
 
     override fun save(userPersonalSchedule: UserPersonalSchedule): UserPersonalSchedule {
-        return userPersonalScheduleRepository.save(userPersonalSchedule)
+        userPersonalScheduleRepository.add(userPersonalSchedule.personalSchedule!!.id!!, userPersonalSchedule.user!!.id!!, userPersonalSchedule.workDate!!, userPersonalSchedule.confirm!!)
+        return findByUserIdAndDate(userPersonalSchedule.user!!.id!!, userPersonalSchedule.workDate!!)
     }
 
     override fun findByUserIdAndDate(userId: Long, workDate: LocalDate): UserPersonalSchedule {

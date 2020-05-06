@@ -15,7 +15,7 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.Size
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "public")
 data class User(@Id
                 @GeneratedValue(strategy = GenerationType.IDENTITY)
                 @Column(name = "Id_user")

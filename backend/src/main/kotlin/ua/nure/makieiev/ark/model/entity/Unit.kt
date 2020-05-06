@@ -11,7 +11,7 @@ import javax.persistence.Table
 import javax.validation.constraints.Size
 
 @Entity
-@Table(name = "units")
+@Table(name = "units", schema = "public")
 data class Unit(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)

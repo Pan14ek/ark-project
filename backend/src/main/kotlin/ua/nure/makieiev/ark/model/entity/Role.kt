@@ -13,7 +13,7 @@ import javax.persistence.Table
 import javax.validation.constraints.Size
 
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", schema = "public")
 data class Role(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)

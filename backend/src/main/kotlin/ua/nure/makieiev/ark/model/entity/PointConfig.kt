@@ -8,7 +8,7 @@ import javax.persistence.Id
 import javax.persistence.Table
 
 @Entity
-@Table(name = "points_config")
+@Table(name = "points_config", schema = "public")
 data class PointConfig(@Id
                        @GeneratedValue(strategy = GenerationType.IDENTITY)
                        @Column(name = "Id_point_config")

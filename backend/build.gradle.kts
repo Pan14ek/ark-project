@@ -37,7 +37,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("io.jsonwebtoken:jjwt:0.9.1")
-    implementation("org.postgresql:postgresql")
+    implementation("org.postgresql:postgresql:42.2.12")
     implementation("org.apache.commons:commons-lang3:3.3.2")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -45,8 +45,6 @@ dependencies {
     implementation("commons-codec:commons-codec:1.9")
     compileOnly("org.projectlombok:lombok")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("com.h2database:h2")
-    runtimeOnly("mysql:mysql-connector-java")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {

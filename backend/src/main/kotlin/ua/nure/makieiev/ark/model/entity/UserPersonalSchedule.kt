@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
-@Table(name = "users_personal_schedules")
+@Table(name = "users_personal_schedules", schema = "public")
 data class UserPersonalSchedule(@Id
                                 @GeneratedValue(strategy = IDENTITY)
                                 @Column(name = "Id_user_personal_schedule")
@@ -29,7 +29,7 @@ data class UserPersonalSchedule(@Id
                                 @JoinColumn(name = "Id_user")
                                 var user: User? = null,
                                 @ManyToOne(fetch = FetchType.LAZY)
-                                @JoinColumn(name = "Id_person_schedule")
+                                @JoinColumn(name = "Id_personal_schedule")
                                 var personalSchedule: PersonalSchedule? = null
 ) {
     override fun toString(): String {
