@@ -21,6 +21,7 @@ import ua.nure.makieiev.ark.service.PersonalScheduleService
 import ua.nure.makieiev.ark.service.UserPersonalScheduleService
 import ua.nure.makieiev.ark.service.UserService
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import javax.validation.Valid
 
 @RestController
@@ -42,8 +43,9 @@ class UserPersonalScheduleController @Autowired constructor(private val userPers
             if (personalSchedule!!.isPresent) {
                 userPersonalSchedule.personalSchedule = personalSchedule.get()
                 userPersonalSchedule.user = user
+                userPersonalSchedule.workDate = userPersonalScheduleDto.workDate
                 userPersonalSchedule.confirm = false
-                ResponseEntity(userPersonalScheduleService.save(userPersonalSchedule), CREATED)
+                return ResponseEntity(userPersonalScheduleService.save(userPersonalSchedule), CREATED)
             }
             throw NotFoundException("Personal schedule did not find by id")
         }
@@ -60,7 +62,7 @@ class UserPersonalScheduleController @Autowired constructor(private val userPers
             if (userPersonalScheduleOptional!!.isPresent) {
                 var userPersonalSchedule = userPersonalScheduleOptional.get()
                 userPersonalSchedule = confirmUserPersonalSchedule.confirm?.let { userPersonalScheduleService.confirmPersonalSchedule(it, userPersonalSchedule) }!!
-                ResponseEntity(userPersonalSchedule, OK)
+                return ResponseEntity(userPersonalSchedule, OK)
             }
             throw NotFoundException("Personal schedule did not find by id")
         }
@@ -68,12 +70,20 @@ class UserPersonalScheduleController @Autowired constructor(private val userPers
 
     @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/{userId}/{workDate}")
-    fun findByUserIdAndWorkDate(@PathVariable userId: Long, @PathVariable workDate: LocalDate): ResponseEntity<Any> {
-        val userPersonalSchedule: UserPersonalSchedule? = userPersonalScheduleService.findByUserIdAndDate(userId, workDate)
+    fun findByUserIdAndWorkDate(@PathVariable userId: Long, @PathVariable workDate: String): ResponseEntity<Any> {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val workDateLocalDate = LocalDate.parse(workDate, formatter)
+        val userPersonalSchedule: UserPersonalSchedule? = userPersonalScheduleService.findByUserIdAndDate(userId, workDateLocalDate)
         userPersonalSchedule?.let {
             return ResponseEntity(userPersonalSchedule, OK)
         }
         throw NotFoundException("User personal schedule did not find by user id and work date")
+    }
+
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
+    @GetMapping("/{userId}")
+    fun findByUserId(@PathVariable userId: Long): ResponseEntity<Any> {
+        return ResponseEntity(userPersonalScheduleService.findAllByUserId(userId), OK)
     }
 
 }
