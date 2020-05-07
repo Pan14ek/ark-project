@@ -9,4 +9,6 @@ interface PointConfigService {
 
     fun save(pointConfig: PointConfig): PointConfig
 
+    fun update(pointConfig: PointConfig): PointConfig
+
 }

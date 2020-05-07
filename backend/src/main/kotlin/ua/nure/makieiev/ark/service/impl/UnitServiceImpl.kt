@@ -29,4 +29,8 @@ class UnitServiceImpl @Autowired constructor(private val unitRepository: UnitRep
         return unitRepository.findById(id)
     }
 
+    override fun update(unit: Unit): Unit {
+        return unitRepository.save(unit)
+    }
+
 }

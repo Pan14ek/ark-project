@@ -13,7 +13,9 @@ import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.security.web.util.matcher.RequestMatcher
 import javax.annotation.Resource
+import javax.servlet.http.HttpServletRequest
 
 @Configuration
 @EnableWebSecurity
@@ -56,6 +58,9 @@ class WebSecurityConfig : WebSecurityConfigurerAdapter() {
                 .authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http.addFilterAt(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter::class.java)
+        http.requiresChannel()
+                .requestMatchers(RequestMatcher { r: HttpServletRequest -> r.getHeader("X-Forwarded-Proto") != null })
+                .requiresSecure()
     }
 
 }

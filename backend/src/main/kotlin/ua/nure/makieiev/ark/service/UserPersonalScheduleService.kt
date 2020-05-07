@@ -16,4 +16,6 @@ interface UserPersonalScheduleService {
 
     fun confirmPersonalSchedule(confirmFlag: Boolean, userPersonalSchedule: UserPersonalSchedule): UserPersonalSchedule
 
+    fun update(userPersonalSchedule: UserPersonalSchedule): UserPersonalSchedule
+
 }

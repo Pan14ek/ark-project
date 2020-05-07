@@ -22,4 +22,8 @@ class PersonalScheduleServiceImpl @Autowired constructor(private val personalSch
         return personalScheduleRepository.findAll().toMutableList()
     }
 
+    override fun update(personalSchedule: PersonalSchedule): PersonalSchedule {
+        return personalScheduleRepository.save(personalSchedule)
+    }
+
 }

@@ -12,4 +12,6 @@ interface PersonalScheduleService {
 
     fun findAll(): List<PersonalSchedule>
 
+    fun update(personalSchedule: PersonalSchedule): PersonalSchedule
+
 }

@@ -11,4 +11,6 @@ interface UnitService {
 
     fun findById(id: Long): Optional<Unit>
 
+    fun update(unit: Unit): Unit
+
 }

@@ -18,4 +18,8 @@ class PointConfigServiceImpl @Autowired constructor(private val pointConfigRepos
         return pointConfigRepository.save(pointConfig)
     }
 
+    override fun update(pointConfig: PointConfig): PointConfig {
+        return pointConfigRepository.save(pointConfig)
+    }
+
 }

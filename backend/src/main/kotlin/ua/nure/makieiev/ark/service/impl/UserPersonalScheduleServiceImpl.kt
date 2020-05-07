@@ -33,4 +33,8 @@ class UserPersonalScheduleServiceImpl @Autowired constructor(private val userPer
         return userPersonalScheduleRepository.save(userPersonalSchedule)
     }
 
+    override fun update(userPersonalSchedule: UserPersonalSchedule): UserPersonalSchedule {
+        return save(userPersonalSchedule)
+    }
+
 }
