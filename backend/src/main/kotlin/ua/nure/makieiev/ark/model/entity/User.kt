@@ -1,9 +1,10 @@
 package ua.nure.makieiev.ark.model.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType
+import javax.persistence.FetchType.LAZY
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -35,14 +36,15 @@ data class User(@Id
                 @Size(min = 6, max = 45)
                 @Column(name = "Password")
                 var password: String? = null,
-                @OneToOne(fetch = FetchType.LAZY)
+                @OneToOne(fetch = LAZY)
                 @JoinColumn(name = "Id_role")
+                @JsonManagedReference
                 var role: Role? = null,
-                @JsonIgnore
-                @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+                @OneToMany(mappedBy = "user", fetch = LAZY)
+                @JsonBackReference
                 var workLogs: List<WorkLog> = emptyList(),
-                @JsonIgnore
-                @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+                @OneToMany(mappedBy = "user", fetch = LAZY)
+                @JsonBackReference
                 var userPersonalSchedules: List<UserPersonalSchedule> = emptyList()
 ) {
     override fun toString(): String {

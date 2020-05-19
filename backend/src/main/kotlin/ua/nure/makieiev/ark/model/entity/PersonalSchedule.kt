@@ -1,6 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -21,7 +21,7 @@ data class PersonalSchedule(
         @NotNull
         @Column(name = "Amount_days")
         var amountDays: Int? = null,
-        @JsonIgnore
+        @JsonManagedReference
         @OneToMany(mappedBy = "personalSchedule", fetch = FetchType.LAZY)
         var userPersonalSchedules: List<UserPersonalSchedule> = emptyList()
 ) {

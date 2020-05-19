@@ -108,3 +108,13 @@ CREATE TABLE Filters_units
     Status       VARCHAR(100) NOT NULL,
     Date_removal TIMESTAMP    NOT NULL
 );
+
+CREATE TABLE Filter_work_log
+(
+    Id_filter_work_log BIGSERIAL NOT NULL UNIQUE PRIMARY KEY,
+    Id_filter_unit BIGSERIAL NOT NULL CONSTRAINT
+        Id_filter_unit_work_log_fk REFERENCES Filter_units,
+    Scan_date_time       TIMESTAMP   NOT NULL,
+    Temperature          VARCHAR(20) NOT NULL,
+    Filter_contamination DECIMAL     NOT NULL
+);

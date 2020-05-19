@@ -1,9 +1,9 @@
 package ua.nure.makieiev.ark.model.entity
 
-import net.minidev.json.annotate.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType
+import javax.persistence.FetchType.LAZY
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
@@ -22,9 +22,9 @@ data class WorkPlace(
         var title: String? = null,
         @Column(name = "Size")
         var size: Int? = null,
-        @JsonIgnore
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = LAZY)
         @JoinColumn(name = "Id_unit")
+        @JsonManagedReference
         var unit: Unit? = null
 ) {
     override fun toString(): String {

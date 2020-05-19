@@ -1,6 +1,7 @@
 package ua.nure.makieiev.ark.model.entity
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
 import javax.persistence.Column
@@ -27,9 +28,11 @@ data class UserPersonalSchedule(@Id
                                 var confirm: Boolean? = null,
                                 @ManyToOne(fetch = FetchType.LAZY)
                                 @JoinColumn(name = "Id_user")
+                                @JsonManagedReference
                                 var user: User? = null,
                                 @ManyToOne(fetch = FetchType.LAZY)
                                 @JoinColumn(name = "Id_personal_schedule")
+                                @JsonManagedReference
                                 var personalSchedule: PersonalSchedule? = null
 ) {
     override fun toString(): String {

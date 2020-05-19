@@ -1,6 +1,5 @@
 package ua.nure.makieiev.ark.controller
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.OK
@@ -14,50 +13,52 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ua.nure.makieiev.ark.exception.response.NotFoundException
-import ua.nure.makieiev.ark.model.dto.FilterDto
-import ua.nure.makieiev.ark.model.entity.Filter
-import ua.nure.makieiev.ark.service.FilterService
-import ua.nure.makieiev.ark.util.converter.impl.FilterConverter
+import ua.nure.makieiev.ark.model.dto.WorkPlaceDto
+import ua.nure.makieiev.ark.model.entity.WorkPlace
+import ua.nure.makieiev.ark.service.UnitService
+import ua.nure.makieiev.ark.service.WorkPlaceService
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/filter")
-class FilterController @Autowired constructor(private val filterConverter: FilterConverter,
-                                              private val filterService: FilterService) {
+@RequestMapping("/workplace")
+class WorkPlaceController constructor(private val workPlaceService: WorkPlaceService, private val unitService: UnitService) {
 
     @PreAuthorize("hasRole('Administration')")
     @PostMapping(value = ["/add"], produces = ["application/json"])
-    fun addFilter(@RequestBody @Valid filterDto: FilterDto, bindingResult: BindingResult): ResponseEntity<Any> {
+    fun addWorkPlace(@RequestBody @Valid workPlaceDto: WorkPlaceDto, bindingResult: BindingResult): ResponseEntity<Any> {
         return if (bindingResult.hasErrors()) {
             ResponseEntity(bindingResult, BAD_REQUEST)
         } else {
-            val filter = filterConverter.fill(filterDto)
-            ResponseEntity(filterService.save(filter), CREATED)
+            val workPlace = obtainWorkPlace(workPlaceDto)
+            ResponseEntity(workPlaceService.save(workPlace), CREATED)
         }
     }
 
     @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/all")
     fun findAll(): ResponseEntity<Any> {
-        return ResponseEntity(filterService.findAll(), OK)
+        return ResponseEntity(workPlaceService.findAll(), OK)
     }
 
     @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Long): ResponseEntity<Any> {
-        val filterOptional = filterService.findById(id)
-        if (filterOptional.isPresent) {
-            return ResponseEntity(filterOptional.get(), OK)
+        val workPlaceOptional = workPlaceService.findById(id)
+        if (workPlaceOptional.isPresent) {
+            return ResponseEntity(workPlaceOptional.get(), OK)
         }
-        throw NotFoundException("Filter did not find by id")
+        throw NotFoundException("Work place did not find by id")
     }
 
-    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
-    @GetMapping("title/{title}")
-    fun findByTitle(@PathVariable title: String): ResponseEntity<Any> {
-        val filter: Filter? = filterService.findByTitle(title)
-        filter?.let { return ResponseEntity(filter, OK) }
-        throw NotFoundException("Filter did not find by id")
+    private fun obtainWorkPlace(workPlaceDto: WorkPlaceDto): WorkPlace {
+        val workPlace = WorkPlace()
+        val unitOptional = workPlaceDto.unitId?.let { unitService.findById(it) }
+        if (unitOptional!!.isPresent) {
+            workPlace.title = workPlaceDto.title
+            workPlace.size = workPlaceDto.size
+            workPlace.unit = unitOptional.get()
+        }
+        return workPlace
     }
 
 }

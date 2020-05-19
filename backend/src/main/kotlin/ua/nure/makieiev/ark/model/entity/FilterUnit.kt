@@ -1,5 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.time.LocalDate
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -18,9 +19,11 @@ data class FilterUnit(@Id
                       var id: Long? = null,
                       @ManyToOne
                       @JoinColumn(name = "id_filter")
+                      @JsonManagedReference
                       var filter: Filter? = null,
                       @ManyToOne
                       @JoinColumn(name = "id_unit")
+                      @JsonManagedReference
                       var unit: Unit? = null,
                       @Column(name = "Date_install")
                       var dateInstall: LocalDate? = null,

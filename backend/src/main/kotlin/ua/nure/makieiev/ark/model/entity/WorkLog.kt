@@ -1,5 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonFormat
 import org.springframework.format.annotation.DateTimeFormat
 import java.time.LocalDate
@@ -27,6 +28,7 @@ data class WorkLog(@Id
                    var amountPoints: Int? = null,
                    @ManyToOne(fetch = FetchType.LAZY)
                    @JoinColumn(name = "Id_user")
+                   @JsonBackReference
                    var user: User? = null
 ) {
     override fun toString(): String {

@@ -41,7 +41,7 @@ class RoleController @Autowired constructor(private val roleService: RoleService
         }
     }
 
-    @PreAuthorize("hasRole('Administration')")
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/title/{title}")
     fun findByTitle(@PathVariable title: String): ResponseEntity<Any> {
         val role: Role? = roleService.findByTitle(title)
@@ -51,7 +51,7 @@ class RoleController @Autowired constructor(private val roleService: RoleService
         throw NotFoundException("Role did not find by title")
     }
 
-    @PreAuthorize("hasRole('Administration')")
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
     @GetMapping("/symbol/{symbol}")
     fun findBySymbol(@PathVariable symbol: String): ResponseEntity<Any> {
         val role: Role? = roleService.findBySymbol(symbol)

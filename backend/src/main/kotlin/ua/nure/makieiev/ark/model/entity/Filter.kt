@@ -1,5 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonIgnore
 import java.math.BigDecimal
 import javax.persistence.Column
@@ -24,5 +25,6 @@ data class Filter(@Id
                   var filterType: String? = null,
                   @JsonIgnore
                   @OneToMany(mappedBy = "filter")
+                  @JsonBackReference
                   var filterUnit: List<FilterUnit>? = null
 )
