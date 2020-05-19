@@ -16,7 +16,7 @@ import ua.nure.makieiev.ark.exception.response.NotFoundException
 import ua.nure.makieiev.ark.model.dto.UserUpdateDto
 import ua.nure.makieiev.ark.model.entity.User
 import ua.nure.makieiev.ark.service.UserService
-import ua.nure.makieiev.ark.util.converter.UserConverter
+import ua.nure.makieiev.ark.util.converter.impl.UserConverter
 import java.util.*
 import javax.validation.Valid
 

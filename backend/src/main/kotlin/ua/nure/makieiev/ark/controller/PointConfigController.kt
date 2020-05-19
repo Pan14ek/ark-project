@@ -17,7 +17,7 @@ import ua.nure.makieiev.ark.exception.response.NotFoundException
 import ua.nure.makieiev.ark.model.dto.PointConfigDto
 import ua.nure.makieiev.ark.model.entity.PointConfig
 import ua.nure.makieiev.ark.service.PointConfigService
-import ua.nure.makieiev.ark.util.converter.PointConfigConverter
+import ua.nure.makieiev.ark.util.converter.impl.PointConfigConverter
 import java.util.*
 import javax.validation.Valid
 
@@ -33,7 +33,7 @@ class PointConfigController @Autowired constructor(private val pointConfigServic
         return if (bindingResult.hasErrors()) {
             ResponseEntity(bindingResult, BAD_REQUEST)
         } else {
-            val pointConfig: PointConfig = pointConfigConverter.fillPointConfig(pointConfigDto)
+            val pointConfig: PointConfig = pointConfigConverter.fill(pointConfigDto)
             ResponseEntity(pointConfigService.save(pointConfig), CREATED)
         }
     }

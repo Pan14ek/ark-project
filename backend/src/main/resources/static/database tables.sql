@@ -76,3 +76,35 @@ CREATE TABLE users_personal_schedules
     Work_date TIMESTAMP NOT NULL,
     Confirm   BOOLEAN   NOT NULL
 );
+
+CREATE TABLE filters
+(
+    Id_filter BIGSERIAL NOT NULL UNIQUE PRIMARY KEY,
+    title       VARCHAR(100) NOT NULL UNIQUE,
+    diameter    DECIMAL      NOT NULL,
+    filter_type VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Chemical_Substances
+(
+    Id_chemical_substance BIGSERIAL NOT NULL UNIQUE PRIMARY KEY,
+    title   VARCHAR(100) NOT NULL,
+    formula VARCHAR(200) NOT NULL
+);
+
+CREATE TABLE Filters_Chemical_Substances
+(
+    Id_filter_chemical_substance BIGSERIAL NOT NULL UNIQUE PRIMARY KEY,
+    Id_filter BIGSERIAL NOT NULL CONSTRAINT Id_filter_chemical_substance_fk REFERENCES filters,
+    Id_chemical_substance BIGSERIAL NOT NULL CONSTRAINT Id_chemical_substance_filter_fk REFERENCES Chemical_Substances
+);
+
+CREATE TABLE Filters_units
+(
+    Id_filter_unit BIGSERIAL NOT NULL UNIQUE PRIMARY KEY,
+    Id_filter BIGSERIAL NOT NULL CONSTRAINT Id_filter_unit_fk REFERENCES filters,
+    Id_unit BIGSERIAL NOT NULL CONSTRAINT Id_unit_filter_fk REFERENCES units,
+    Date_install TIMESTAMP    NOT NULL,
+    Status       VARCHAR(100) NOT NULL,
+    Date_removal TIMESTAMP    NOT NULL
+);

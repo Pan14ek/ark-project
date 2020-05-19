@@ -13,7 +13,7 @@ import ua.nure.makieiev.ark.model.dto.UserDto
 import ua.nure.makieiev.ark.model.entity.Role
 import ua.nure.makieiev.ark.service.RoleService
 import ua.nure.makieiev.ark.service.UserService
-import ua.nure.makieiev.ark.util.converter.UserConverter
+import ua.nure.makieiev.ark.util.converter.impl.UserConverter
 import ua.nure.makieiev.ark.util.validation.UserValidator
 
 @RestController
@@ -39,7 +39,7 @@ class SignUpController @Autowired constructor(private val userService: UserServi
 
     private fun signUpProcess(userDto: UserDto): ResponseEntity<Any> {
         val registeredRole: Role? = roleService.findBySymbol("R")
-        var user = userConverter.fillUser(userDto)
+        var user = userConverter.fill(userDto)
         user.role = registeredRole
         user = userService.save(user)
         return ResponseEntity(user, HttpStatus.OK)

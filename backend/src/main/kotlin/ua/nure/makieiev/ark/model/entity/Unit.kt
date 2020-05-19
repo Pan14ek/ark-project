@@ -1,5 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -26,8 +27,12 @@ data class Unit(
         @Size(min = 6, max = 50)
         @Column(name = "Status")
         var status: String? = null,
+        @JsonIgnore
         @OneToMany(mappedBy = "unit", fetch = FetchType.LAZY)
-        var workPlaces: List<WorkPlace> = emptyList()
+        var workPlaces: List<WorkPlace> = emptyList(),
+        @JsonIgnore
+        @OneToMany(mappedBy = "unit")
+        var unitFilter: List<FilterUnit>? = null
 ) {
     override fun toString(): String {
         return "Unit(id=$id," +

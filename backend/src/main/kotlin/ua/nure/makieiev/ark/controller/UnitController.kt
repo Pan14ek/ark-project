@@ -19,7 +19,7 @@ import ua.nure.makieiev.ark.exception.response.NotFoundException
 import ua.nure.makieiev.ark.model.dto.UnitDto
 import ua.nure.makieiev.ark.model.entity.Unit
 import ua.nure.makieiev.ark.service.UnitService
-import ua.nure.makieiev.ark.util.converter.UnitConverter
+import ua.nure.makieiev.ark.util.converter.impl.UnitConverter
 import java.util.*
 import javax.validation.Valid
 
@@ -35,7 +35,7 @@ class UnitController @Autowired constructor(private val unitService: UnitService
             return if (bindingResult.hasErrors()) {
                 ResponseEntity(bindingResult, BAD_REQUEST)
             } else {
-                val unit: Unit = unitConverter.fillUnit(unitDto)
+                val unit: Unit = unitConverter.fill(unitDto)
                 ResponseEntity(unitService.save(unit), CREATED)
             }
         } catch (exception: NotUniqueUnitFieldException) {

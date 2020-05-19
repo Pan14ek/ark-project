@@ -18,7 +18,7 @@ import ua.nure.makieiev.ark.exception.response.NotFoundException
 import ua.nure.makieiev.ark.model.dto.RoleDto
 import ua.nure.makieiev.ark.model.entity.Role
 import ua.nure.makieiev.ark.service.RoleService
-import ua.nure.makieiev.ark.util.converter.RoleConverter
+import ua.nure.makieiev.ark.util.converter.impl.RoleConverter
 import javax.validation.Valid
 
 @RestController
@@ -33,7 +33,7 @@ class RoleController @Autowired constructor(private val roleService: RoleService
             return if (bindingResult.hasErrors()) {
                 ResponseEntity(bindingResult, HttpStatus.BAD_REQUEST)
             } else {
-                val role = roleConverter.fillRole(roleDto)
+                val role = roleConverter.fill(roleDto)
                 ResponseEntity(roleService.save(role), HttpStatus.CREATED)
             }
         } catch (exception: NotUniqueRoleFieldException) {
@@ -68,7 +68,7 @@ class RoleController @Autowired constructor(private val roleService: RoleService
             return if (bindingResult.hasErrors()) {
                 ResponseEntity(bindingResult, HttpStatus.BAD_REQUEST)
             } else {
-                val role = roleConverter.fillRole(roleDto)
+                val role = roleConverter.fill(roleDto)
                 ResponseEntity(roleService.update(role), OK)
             }
         } catch (exception: NotUniqueRoleFieldException) {
