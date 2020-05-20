@@ -29,7 +29,7 @@ public class FilterWorkLogController {
     @PostMapping("/add")
     public ResponseEntity<?> addFilterWorkLog(@RequestBody FilterWorkLogDto filterWorkLogDto) {
         FilterUnit filterUnit = filterWorkLogService.findFilterUnitByUnitId(filterWorkLogDto.getUnitId(), filterWorkLogDto.getToken());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime now = LocalDateTime.now();
         FilterWorkLogInfo filterWorkLogInfo = new FilterWorkLogInfo();
         filterWorkLogInfo.setFilterUnitId(filterUnit.getId());

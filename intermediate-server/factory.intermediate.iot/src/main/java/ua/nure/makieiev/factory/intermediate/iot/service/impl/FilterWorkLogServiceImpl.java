@@ -40,7 +40,7 @@ public class FilterWorkLogServiceImpl implements FilterWorkLogService {
         headers.add("Authorization", "Bearer " + token);
         HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
         ResponseEntity<String> responseEntity = rest.exchange("https://arkproject.herokuapp.com/filter/unit/id/" + unitId, HttpMethod.GET, requestEntity, String.class);
-        return gson.fromJson(requestEntity.getBody(), FilterUnit.class);
+        return gson.fromJson(responseEntity.getBody(), FilterUnit.class);
     }
 
 }
