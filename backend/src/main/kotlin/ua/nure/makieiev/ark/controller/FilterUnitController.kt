@@ -48,6 +48,14 @@ class FilterUnitController @Autowired constructor(private val filterUnitService:
         throw NotFoundException("Filter from unit did not find by id")
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
+    @GetMapping("id/{id}")
+    fun findByUnitIdActivate(@PathVariable id: Long): ResponseEntity<Any> {
+        val filterUnit: FilterUnit? = filterUnitService.findByUnitIdAndStatus(id, "Activate")
+        filterUnit?.let { return ResponseEntity(filterUnit, OK) }
+        throw NotFoundException("Filter from unit did not find by id")
+    }
+
     private fun obtainFilterUnit(filterUnitDto: FilterUnitDto): FilterUnit {
         val filterUnit = FilterUnit()
         val unitOptional = filterUnitDto.unitId?.let { unitService.findById(it) }
