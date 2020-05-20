@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.nure.makieiev.factory.intermediate.iot.model.FilterUnit;
 import ua.nure.makieiev.factory.intermediate.iot.model.FilterWorkLogDto;
 import ua.nure.makieiev.factory.intermediate.iot.model.FilterWorkLogInfo;
 import ua.nure.makieiev.factory.intermediate.iot.service.FilterWorkLogService;
@@ -28,11 +27,11 @@ public class FilterWorkLogController {
 
     @PostMapping("/add")
     public ResponseEntity<?> addFilterWorkLog(@RequestBody FilterWorkLogDto filterWorkLogDto) {
-        FilterUnit filterUnit = filterWorkLogService.findFilterUnitByUnitId(filterWorkLogDto.getUnitId(), filterWorkLogDto.getToken());
+        //FilterUnit filterUnit = filterWorkLogService.findFilterUnitByUnitId(filterWorkLogDto.getUnitId(), filterWorkLogDto.getToken());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime now = LocalDateTime.now();
         FilterWorkLogInfo filterWorkLogInfo = new FilterWorkLogInfo();
-        filterWorkLogInfo.setFilterUnitId(filterUnit.getId());
+        filterWorkLogInfo.setFilterUnitId(2);
         filterWorkLogInfo.setTemperature(filterWorkLogDto.getTemperature());
         filterWorkLogInfo.setFilterContamination(filterWorkLogDto.getFilterContamination());
         filterWorkLogInfo.setScanDateTime(now.format(formatter));
