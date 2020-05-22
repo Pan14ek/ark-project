@@ -14,3 +14,19 @@ Project for university
 8. JDK 1.8
 9. MySQL
 
+### Front-end part
+1. Angular 8
+2. Bulma
+
+### Mobile part
+1. Kotlin
+2. Retrofit2
+
+### Intermediate server part
+1. Spring Boot
+2. Srping MVC
+3. Java 8
+
+### IoT simulation
+1. Java 8
+2. Quartz-scheduler
