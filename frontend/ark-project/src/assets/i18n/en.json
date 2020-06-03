@@ -1,0 +1,75 @@
+{
+  "HEADER": {
+    "HOME": "Home",
+    "CONTACT": "Contact",
+    "PROFILE": "Profile",
+    "SCHEDULE": "Schedule",
+    "ADMIN_PANEL": "Admin panel",
+    "SIGN_OUT": "Sign out",
+    "SIGN_IN": "Sign in",
+    "SIGN_UP": "Sign up"
+  },
+  "SIGN_IN": {
+    "ENTER_TO_APP": "Sign in to Factory application",
+    "LOGIN": "Login",
+    "PASSWORD": "Password",
+    "LOGIN_REQUIRED": "Your login is required.",
+    "LOGIN_HAS_MORE_THEN_SIX_SYMBOLS": " Login must be at least 6 characters long.",
+    "PASSWORD_REQUIRED": "Your password is required.",
+    "PASSWORD_LENGTH": "Password must be at least 8 characters long.",
+    "NEED_ACCOUNT": "Need an account?",
+    "CREATE_ACCOUNT": "Create one",
+    "CANCEL": "Cancel"
+  },
+  "CONTACT": {
+    "CONTACT_US": "Contact Us!",
+    "NAME": "Name",
+    "NAME_REQUIRED": "Your name is required.",
+    "EMAIL": "Email",
+    "INVALID_EMAIL": "Your email is invalid and needs to be an email.",
+    "YOUR_MESSAGE": "Your message",
+    "SEND": "Send",
+    "WRITE_YOUR_MESSAGE": "Write your message"
+  },
+  "SIGN_UP": {
+    "SIGN_UP_FORM": "Sign up form",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "FIRST_NAME_REQUIRED": "Your first name is required.",
+    "FIRST_NAME_LENGTH": "First name must be at least 3 characters long.",
+    "LAST_NAME_REQUIRED": "Your last name is required.",
+    "LAST_NAME_LENGTH": "Last name must be at least 3 characters long.",
+    "REPEAT_PASSWORD": "Repeat password",
+    "REPEAT_PASSWORD_REQUIRED": "Your repeat password is required.",
+    "REPEAT_PASSWORD_LENGTH": "Repeat password must be at least 8 characters long.",
+    "REPEAT_PASSWORD_NOT_EQUAL_PASSWORD": "Your repeat password is not equal password."
+  },
+  "ROLE": {
+    "ROLE": "Role",
+    "TITLE": "Title",
+    "CHOOSE_ROLE": "Choose roles",
+    "SYMBOL": "Symbol",
+    "ADD_ROLE": "Add role"
+  },
+  "HOME": {
+    "WELCOME": "You are welcome!",
+    "FACTORY_HOME": "Main factory page"
+  },
+  "FOOTER": {
+    "MADE_BY": "Made by"
+  },
+  "SCHEDULE": {
+    "SCHEDULE": "Schedule",
+    "CONFIRM": "Confirm",
+    "WRITE_AMOUNT_DAYS": "Write amount days",
+    "ADD_SCHEDULE_DAYS": "Add schedule days",
+    "CHOOSE_AMOUNT_DAYS": "Choose amount days",
+    "CHOOSE_DATE": "Choose date",
+    "CHOOSE_USER": "Choose worker",
+    "ADD_WORK_DAY_TO_USER": "Add work day to user"
+  },
+  "GENERAL": {
+    "DESCRIPTION": "Description",
+    "CHANGE": "Change"
+  }
+}

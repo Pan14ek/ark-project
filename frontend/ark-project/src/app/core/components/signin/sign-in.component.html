@@ -2,7 +2,7 @@
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Sign in to Factory application</p>
+      <p class="modal-card-title">{{'SIGN_IN.ENTER_TO_APP' | translate }}</p>
       <button class="delete" aria-label="close" (click)="close()"></button>
     </header>
 
@@ -10,18 +10,18 @@
 
       <form (ngSubmit)="submitForm()" #signInForm="ngForm">
         <div class="field">
-          <label class="label" for="login">Login</label>
+          <label class="label" for="login">{{'SIGN_IN.LOGIN' | translate }}</label>
           <div class="control">
             <input class="input" type="text" id="login" name="login" [(ngModel)]="login" #loginInput="ngModel" required
                    minlength="6" maxlength="45">
             <div class="help is-danger" *ngIf="loginInput.invalid && (loginInput.dirty || loginInput.touched)">
 
               <div *ngIf="loginInput.errors.required">
-                Your login is required.
+                {{'SIGN_IN.LOGIN_REQUIRED' | translate }}
               </div>
 
               <div *ngIf="loginInput.errors.minlength">
-                Login must be at least 6 characters long.
+                {{'SIGN_IN.LOGIN_HAS_MORE_THEN_SIX_SYMBOLS' | translate }}
               </div>
 
             </div>
@@ -29,18 +29,18 @@
         </div>
 
         <div class="field">
-          <label class="label" for="password">Password</label>
+          <label class="label" for="password">{{'SIGN_IN.PASSWORD' | translate }}</label>
           <div class="control">
             <input class="input" type="password" id="password" name="password" [(ngModel)]="password"
                    #passwordInput="ngModel" required>
             <div class="help is-danger" *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
 
               <div *ngIf="passwordInput.errors.required">
-                Your password is required.
+                {{'SIGN_IN.PASSWORD_REQUIRED' | translate }}
               </div>
 
               <div *ngIf="passwordInput.errors.minlength">
-                Password must be at least 8 characters long.
+                {{'SIGN_IN.PASSWORD_LENGTH' | translate }}
               </div>
 
             </div>
@@ -48,7 +48,7 @@
         </div>
 
         <div class="control has-text-centered">
-          <button class="button is-success" [disabled]="signInForm.invalid">Sign in</button>
+          <button class="button is-success" [disabled]="signInForm.invalid">{{'HEADER.SIGN_IN' | translate }}</button>
         </div>
 
       </form>
@@ -56,7 +56,8 @@
       <section class="section is-info">
         <div class="container">
           <h4 class="subtitle">
-            Need an account? <a (click)="redirectToSignUpPage()">Create one</a>
+            {{'SIGN_IN.NEED_ACCOUNT' | translate }} <a
+            (click)="redirectToSignUpPage()">{{'SIGN_IN.CREATE_ACCOUNT' | translate }}</a>
           </h4>
         </div>
       </section>
@@ -64,7 +65,7 @@
     </section>
 
     <footer class="modal-card-foot">
-      <button class="button" (click)="close()">Cancel</button>
+      <button class="button" (click)="close()">{{'SIGN_IN.CANCEL' | translate }}</button>
     </footer>
   </div>
 </div>

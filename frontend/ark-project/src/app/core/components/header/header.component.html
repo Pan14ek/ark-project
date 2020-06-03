@@ -15,23 +15,33 @@
 
   <div id="navbarBasicExample" class="navbar-menu" #navMenu>
     <div class="navbar-start">
-      <a class="navbar-item" routerLink="/">Home</a>
-      <a class="navbar-item" routerLink="/contact" *ngIf="!authorizeFlag">Contact</a>
-      <a class="navbar-item" routerLink="/profile" *ngIf="authorizeFlag">Profile</a>
-      <a class="navbar-item" routerLink="/user/schedule" *ngIf="authorizeFlag">Schedule</a>
-      <a class="navbar-item" routerLink="/admin/panel" *ngIf="adminPanelFlag">Admin panel</a>
+      <a class="navbar-item" routerLink="/">{{'HEADER.HOME' | translate }}</a>
+      <a class="navbar-item" routerLink="/contact" *ngIf="!authorizeFlag">{{'HEADER.CONTACT' | translate }}</a>
+      <a class="navbar-item" routerLink="/profile" *ngIf="authorizeFlag">{{'HEADER.PROFILE' | translate }}</a>
+      <a class="navbar-item" routerLink="/user/schedule" *ngIf="authorizeFlag">{{'HEADER.SCHEDULE' | translate }}</a>
+      <a class="navbar-item" routerLink="/admin/panel" *ngIf="adminPanelFlag">{{'HEADER.ADMIN_PANEL' | translate }}</a>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
+
+        <div class="select is-rounded">
+
+          <select #langSelect (change)="changeLang(langSelect.value)" class="is-focused">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+                    [selected]="lang === translate.currentLang">{{ lang }}</option>
+          </select>
+
+        </div>
+
         <div class="buttons" *ngIf="authorizeFlag">
-          <button class="button is-light" (click)="signOut()">Sign out</button>
+          <button class="button is-light" (click)="signOut()">{{'HEADER.SIGN_OUT' | translate }}</button>
         </div>
         <div class="buttons" *ngIf="!authorizeFlag">
-          <button class="button is-light" (click)="showSignInForm()">Sign in</button>
+          <button class="button is-light" (click)="showSignInForm()">{{'HEADER.SIGN_IN' | translate }}</button>
           <app-signin *ngIf="showSignInFormFlag" (closeForm)="showSignInFormFlag=false"></app-signin>
           <a class="button is-success" routerLink="/join">
-            <strong>Sign up</strong>
+            <strong>{{'HEADER.SIGN_UP' | translate }}</strong>
           </a>
         </div>
       </div>

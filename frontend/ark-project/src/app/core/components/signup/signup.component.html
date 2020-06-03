@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <h2 class="title has-text-centered">
-        Sign up
+        {{'SIGN_UP.SIGN_UP_FORM' | translate }}
       </h2>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <form (ngSubmit)="submitForm()" #signUpForm="ngForm">
 
       <div class="field">
-        <label class="label" for="firstName">First name</label>
+        <label class="label" for="firstName">{{'SIGN_UP.FIRST_NAME' | translate }}</label>
         <div class="control">
           <input class="input" type="text" id="firstName" name="firstName" [(ngModel)]="firstName"
                  #firstNameInput="ngModel" required minlength="3" maxlength="40">
@@ -22,11 +22,11 @@
                *ngIf="firstNameInput.invalid && (firstNameInput.dirty || firstNameInput.touched)">
 
             <div *ngIf="firstNameInput.errors.required">
-              Your first name is required.
+              {{'SIGN_UP.FIRST_NAME_REQUIRED' | translate }}
             </div>
 
             <div *ngIf="firstNameInput.errors.minlength">
-              First name must be at least 3 characters long.
+              {{'SIGN_UP.FIRST_NAME_LENGTH' | translate }}
             </div>
 
           </div>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="lastName">Last name</label>
+        <label class="label" for="lastName">{{'SIGN_UP.LAST_NAME' | translate }}</label>
         <div class="control">
           <input class="input" type="text" id="lastName" name="lastName" [(ngModel)]="lastName" #lastNameInput="ngModel"
                  required minlength="3" maxlength="40">
@@ -44,11 +44,11 @@
           <div class="help is-danger" *ngIf="lastNameInput.invalid && (lastNameInput.dirty || lastNameInput.touched)">
 
             <div *ngIf="lastNameInput.errors.required">
-              Your last name is required.
+              {{'SIGN_UP.LAST_NAME_REQUIRED' | translate }}
             </div>
 
             <div *ngIf="lastNameInput.errors.minlength">
-              Last name must be at least 3 characters long.
+              {{'SIGN_UP.LAST_NAME_LENGTH' | translate }}
             </div>
 
           </div>
@@ -57,7 +57,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="login">Login</label>
+        <label class="label" for="login">{{'SIGN_IN.LOGIN' | translate }}</label>
         <div class="control">
           <input class="input" type="text" id="login" name="login" [(ngModel)]="login" #loginInput="ngModel" required
                  minlength="6" maxlength="45">
@@ -65,11 +65,11 @@
           <div class="help is-danger" *ngIf="loginInput.invalid && (loginInput.dirty || loginInput.touched)">
 
             <div *ngIf="loginInput.errors.required">
-              Your login is required.
+              {{'SIGN_IN.LOGIN_REQUIRED' | translate }}
             </div>
 
             <div *ngIf="loginInput.errors.minlength">
-              Login must be at least 6 characters long.
+              {{'SIGN_IN.LOGIN_HAS_MORE_THEN_SIX_SYMBOLS' | translate }}
             </div>
 
           </div>
@@ -78,14 +78,14 @@
       </div>
 
       <div class="field">
-        <label class="label" for="email">Email</label>
+        <label class="label" for="email">{{'CONTACT.EMAIL' | translate }}</label>
         <div class="control">
           <input class="input" type="email" id="email" name="email" [(ngModel)]="email" #emailInput="ngModel" required
                  email maxlength="100">
           <div class="help is-danger" *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
 
             <div *ngIf="emailInput.errors.required">
-              Your email is invalid and needs to be an email.
+              {{'CONTACT.INVALID_EMAIL' | translate }}
             </div>
 
           </div>
@@ -93,18 +93,18 @@
       </div>
 
       <div class="field">
-        <label class="label" for="password">Password</label>
+        <label class="label" for="password">{{'SIGN_IN.PASSWORD' | translate }}</label>
         <div class="control">
           <input class="input" type="password" id="password" name="password" [(ngModel)]="password"
                  #passwordInput="ngModel" required minlength="8" maxlength="45">
           <div class="help is-danger" *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
 
             <div *ngIf="passwordInput.errors.required">
-              Your password is required.
+              {{'SIGN_IN.PASSWORD_REQUIRED' | translate }}
             </div>
 
             <div *ngIf="passwordInput.errors.minlength">
-              Password must be at least 8 characters long.
+              {{'SIGN_IN.PASSWORD_LENGTH' | translate }}
             </div>
 
           </div>
@@ -112,7 +112,7 @@
       </div>
 
       <div class="field">
-        <label class="label" for="repeatPassword">Repeat password</label>
+        <label class="label" for="repeatPassword">{{'SIGN_UP.REPEAT_PASSWORD' | translate }}</label>
         <div class="control">
           <input class="input" type="password" id="repeatPassword" name="repeatPassword" [(ngModel)]="repeatPassword"
                  #repeatPasswordInput="ngModel" required minlength="8" maxlength="45">
@@ -120,15 +120,15 @@
                *ngIf="repeatPasswordInput.invalid && (passwordInput.dirty || passwordInput.touched) && repeatPasswordInput != passwordInput">
 
             <div *ngIf="passwordInput.errors.required">
-              Your repeat password is required.
+              {{'SIGN_UP.REPEAT_PASSWORD_REQUIRED' | translate }}
             </div>
 
             <div *ngIf="passwordInput.errors.minlength">
-              Repeat password must be at least 8 characters long.
+              {{'SIGN_UP.REPEAT_PASSWORD_LENGTH' | translate }}
             </div>
 
             <div *ngIf="repeatPasswordInput != passwordInput">
-              Your repeat password is not equal password.
+              {{'SIGN_UP.REPEAT_PASSWORD_NOT_EQUAL_PASSWORD' | translate }}
             </div>
 
           </div>
@@ -136,7 +136,8 @@
       </div>
 
       <div class="control has-text-centered">
-        <button class="button is-large is-primary" [disabled]="signUpForm.invalid">Sign up</button>
+        <button class="button is-large is-primary"
+                [disabled]="signUpForm.invalid">{{'HEADER.SIGN_UP' | translate }}</button>
       </div>
 
     </form>

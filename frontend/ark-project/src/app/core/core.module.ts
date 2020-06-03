@@ -24,6 +24,8 @@ import {PersonalScheduleService} from './services/personal-schedule.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {UserScheduleComponent} from './components/user-schedule/user-schedule.component';
 import {ConfirmDayComponent} from './components/confirm-day/confirm-day.component';
+import {HomeComponent} from './components/home/home.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {ConfirmDayComponent} from './components/confirm-day/confirm-day.componen
     RolepanelComponent,
     SchedulesComponent,
     UserScheduleComponent,
-    ConfirmDayComponent
+    ConfirmDayComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +54,8 @@ import {ConfirmDayComponent} from './components/confirm-day/confirm-day.componen
     MatSelectModule,
     MatInputModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
     HeaderComponent,

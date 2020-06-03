@@ -1,0 +1,75 @@
+{
+  "HEADER": {
+    "HOME": "Головна",
+    "CONTACT": "Контакти",
+    "PROFILE": "Профіль",
+    "SCHEDULE": "Графік",
+    "ADMIN_PANEL": "Адмін панель",
+    "SIGN_OUT": "Вийти",
+    "SIGN_IN": "Увійти",
+    "SIGN_UP": "Зареєструватися"
+  },
+  "SIGN_IN": {
+    "ENTER_TO_APP": "Увійти до системи",
+    "LOGIN": "Логін",
+    "PASSWORD": "Пароль",
+    "LOGIN_REQUIRED": "Введіть логін",
+    "LOGIN_HAS_MORE_THEN_SIX_SYMBOLS": " Логін повинен містити 6 або більше символів",
+    "PASSWORD_REQUIRED": " Введить пароль",
+    "PASSWORD_LENGTH": " Пароль повинен містити 8 або більше символів",
+    "NEED_ACCOUNT": "Потрібен аккаунт?",
+    "CREATE_ACCOUNT": "Створити аккаунт",
+    "CANCEL": "Відмінити"
+  },
+  "CONTACT": {
+    "CONTACT_US": "Зв'яжись з нами!",
+    "NAME": "Ім'я",
+    "NAME_REQUIRED": "Введіть ім'я.",
+    "EMAIL": "Електронна адреса",
+    "INVALID_EMAIL": "Електронний адрес не вірний, перевірте його.",
+    "YOUR_MESSAGE": "Ваше повідомлення",
+    "SEND": "Відправити",
+    "WRITE_YOUR_MESSAGE": "Напишіть повідомлення"
+  },
+  "SIGN_UP": {
+    "SIGN_UP_FORM": "Форма реєстрації",
+    "FIRST_NAME": "Ім'я",
+    "LAST_NAME": "Прізвище",
+    "FIRST_NAME_REQUIRED": "Введіть ім'я",
+    "FIRST_NAME_LENGTH": "Ім'я повинно мати 3 або більше літер",
+    "LAST_NAME_REQUIRED": "Введіть призвіще",
+    "LAST_NAME_LENGTH": "Призвіще повинно мати 3 або більше символів",
+    "REPEAT_PASSWORD": "Повторний пароль",
+    "REPEAT_PASSWORD_REQUIRED": "Введіть повторний пароль",
+    "REPEAT_PASSWORD_LENGTH": "Повторний пароль повинен мати 8 або більше символів",
+    "REPEAT_PASSWORD_NOT_EQUAL_PASSWORD": "Повторний пароль повинен бути таким же, як основний пароль"
+  },
+  "ROLE": {
+    "ROLE": "Роль",
+    "TITLE": "Назва ролі",
+    "CHOOSE_ROLE": "Виберіть роль",
+    "SYMBOL": "Символ",
+    "ADD_ROLE": "Додати роль"
+  },
+  "HOME": {
+    "WELCOME": "Ми ради вас бачити!",
+    "FACTORY_HOME": "Головна сторінка сервісу"
+  },
+  "FOOTER": {
+    "MADE_BY": "Зроблено"
+  },
+  "SCHEDULE": {
+    "SCHEDULE": "Графік",
+    "CONFIRM": "Підтвердити",
+    "WRITE_AMOUNT_DAYS": "Напишіть кількість днів",
+    "ADD_SCHEDULE_DAYS": "Додати кількість днів",
+    "CHOOSE_AMOUNT_DAYS": "Виберіть кількість днів",
+    "CHOOSE_DATE": "Виберіть дату",
+    "CHOOSE_USER": "Виберіть робітника",
+    "ADD_WORK_DAY_TO_USER": "Додати робочи день робітнику"
+  },
+  "GENERAL": {
+    "DESCRIPTION": "Опис",
+    "CHANGE": "Змінити"
+  }
+}

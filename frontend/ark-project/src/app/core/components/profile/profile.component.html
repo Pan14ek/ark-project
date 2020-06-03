@@ -12,35 +12,35 @@
   <div class="container">
 
     <div class="field">
-      <label class="label" for="firstName">First name</label>
+      <label class="label" for="firstName">{{'SIGN_UP.FIRST_NAME' | translate }}</label>
       <div class="control">
         <input class="input" id="firstName" readonly type="text" [value]="user.firstName">
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="lastName">Last name</label>
+      <label class="label" for="lastName">{{'SIGN_UP.LAST_NAME' | translate }}</label>
       <div class="control">
         <input class="input" id="lastName" readonly type="text" [value]="user.lastName">
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="login">Login</label>
+      <label class="label" for="login">{{'SIGN_IN.LOGIN' | translate }}</label>
       <div class="control">
         <input class="input" id="login" readonly type="text" [value]="user.login">
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="email">Email</label>
+      <label class="label" for="email">{{'CONTACT.EMAIL' | translate }}</label>
       <div class="control">
         <input class="input" id="email" readonly type="text" [value]="user.email">
       </div>
     </div>
 
     <div class="field">
-      <label class="label" for="role">Role</label>
+      <label class="label" for="role">{{'ROLE.TITLE' | translate }}</label>
       <div class="control">
         <input class="input" id="role" readonly type="text" [value]="user.role.title">
       </div>
