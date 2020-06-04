@@ -16,7 +16,7 @@ export class UnitService {
         Authorization: 'Bearer ' + localStorage.getItem('token')
       })
     };
-    return this.http.get(`${environment.apiLocal}/unit/${unitId}`, httpOptions);
+    return this.http.get(`${environment.apiHerokuBaseUrl}/unit/${unitId}`, httpOptions);
   }
 
 }

@@ -16,7 +16,7 @@ export class FilterService {
         Authorization: 'Bearer ' + localStorage.getItem('token')
       })
     };
-    return this.http.get(`${environment.apiLocal}/filter/${filterId}`, httpOptions);
+    return this.http.get(`${environment.apiHerokuBaseUrl}/filter/${filterId}`, httpOptions);
   }
 
 }

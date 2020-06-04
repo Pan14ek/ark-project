@@ -16,7 +16,7 @@ export class FilterWorkLogService {
         Authorization: 'Bearer ' + localStorage.getItem('token')
       })
     };
-    return this.http.get(`${environment.apiLocal}/filter/worklog/all`, httpOptions);
+    return this.http.get(`${environment.apiHerokuBaseUrl}/filter/worklog/all`, httpOptions);
   }
 
 }
