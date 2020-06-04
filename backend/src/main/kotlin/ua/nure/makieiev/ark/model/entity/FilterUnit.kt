@@ -1,5 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.time.LocalDate
 import javax.persistence.Column
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
@@ -30,4 +32,8 @@ data class FilterUnit(@Id
                       @Column(name = "Status")
                       var status: String? = null,
                       @Column(name = "Date_removal")
-                      var dateRemoval: LocalDate? = null)
+                      var dateRemoval: LocalDate? = null,
+                      @JsonBackReference
+                      @OneToMany(mappedBy = "filterUnit")
+                      var filterWorkLogs: List<FilterWorkLog>? = null
+)

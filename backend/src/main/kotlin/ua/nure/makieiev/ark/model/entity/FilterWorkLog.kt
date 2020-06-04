@@ -1,5 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.math.BigDecimal
 import java.time.LocalDateTime
 import javax.persistence.Column
@@ -20,6 +21,7 @@ data class FilterWorkLog(@NotNull
                          @Column(name = "Id_filter_work_log")
                          var id: Long? = null,
                          @NotNull
+                         @JsonManagedReference
                          @ManyToOne
                          @JoinColumn(name = "Id_filter_unit")
                          var filterUnit: FilterUnit? = null,
