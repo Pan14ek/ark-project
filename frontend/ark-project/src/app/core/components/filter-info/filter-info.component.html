@@ -1,0 +1,14 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">{{'FILTER_INFO.FILTER_INFO' | translate }}</h1>
+    <br>
+    <div class="card" *ngIf="filter">
+      <h2><strong>{{'WORK_LOG.FILTER_TITLE' | translate }} : </strong> {{ filter.title }}</h2>
+      <h3><strong>{{'FILTER_INFO.DIAMETER' | translate }} : </strong> {{ filter.diameter }}</h3>
+      <h3><strong>{{'FILTER_INFO.FILTER_TYPE' | translate }} : </strong> {{ filter.filterType }}</h3>
+    </div>
+    <br>
+    <button class="button is-primary is-light"
+            routerLink="/filter/work/log">{{'WORK_LOG.GO_BACK' | translate }}</button>
+  </div>
+</section>

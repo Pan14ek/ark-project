@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>{{'WORK_LOG.CODE' | translate }}</th>
+    <th>{{'WORK_LOG.FILTER_TITLE' | translate }}</th>
+    <th>{{'WORK_LOG.UNIT_TITLE' | translate }}</th>
+    <th>{{'WORK_LOG.SCAN_DATE_AND_TIME' | translate }}</th>
+    <th>{{'WORK_LOG.TEMPERATURE' | translate }}</th>
+    <th>{{'WORK_LOG.FILTER_CONTAMINATION' | translate }}</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+    <th>{{'WORK_LOG.CODE' | translate }}</th>
+    <th>{{'WORK_LOG.FILTER_TITLE' | translate }}</th>
+    <th>{{'WORK_LOG.UNIT_TITLE' | translate }}</th>
+    <th>{{'WORK_LOG.SCAN_DATE_AND_TIME' | translate }}</th>
+    <th>{{'WORK_LOG.TEMPERATURE' | translate }}</th>
+    <th>{{'WORK_LOG.FILTER_CONTAMINATION' | translate }}</th>
+  </tr>
+  </tfoot>
+  <tbody>
+  <tr *ngFor="let filterWorkLog of filterWorkLogs | async">
+    <th>{{filterWorkLog.id}}</th>
+    <td><a routerLink="/filter/info"
+           [queryParams]="{'filterId': filterWorkLog.filterUnit.filter.id }">{{filterWorkLog.filterUnit.filter.title}}</a>
+    </td>
+    <td><a routerLink="/unit/info"
+           [queryParams]="{'unitId': filterWorkLog.filterUnit.unit.id }">{{filterWorkLog.filterUnit.unit.title}}</a>
+    </td>
+    <td>{{filterWorkLog.scanDateTime}}</td>
+    <td>{{filterWorkLog.temperature}}</td>
+    <td>{{filterWorkLog.filterContamination}}</td>
+  </tr>
+  </tbody>
+</table>

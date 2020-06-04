@@ -1,0 +1,17 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">{{'UNIT_INFO.UNIT_INFO' | translate }}</h1>
+    <br>
+    <div class="card" *ngIf="unit">
+      <h2><strong>{{'WORK_LOG.UNIT_TITLE' | translate }} : </strong> {{ unit.title }}</h2>
+      <h3><strong>{{'UNIT_INFO.STATUS' | translate }} : </strong> {{ unit.status }}</h3>
+      <div class="control">
+        <label for="unitDescription"><strong>Description</strong></label>
+        <textarea class="textarea" id="unitDescription" readonly>{{unit.description}}</textarea>
+      </div>
+    </div>
+    <br>
+    <button class="button is-primary is-light"
+            routerLink="/filter/work/log">{{'WORK_LOG.GO_BACK' | translate }}</button>
+  </div>
+</section>

@@ -10,6 +10,9 @@ import {RolepanelComponent} from './core/components/rolepanel/rolepanel.componen
 import {SchedulesComponent} from './core/components/schedules/schedules.component';
 import {UserScheduleComponent} from './core/components/user-schedule/user-schedule.component';
 import {ConfirmDayComponent} from './core/components/confirm-day/confirm-day.component';
+import {FilterWorklogComponent} from './core/components/filter-worklog/filter-worklog.component';
+import {FilterInfoComponent} from './core/components/filter-info/filter-info.component';
+import {UnitInfoComponent} from './core/components/unit-info/unit-info.component';
 
 const routes: Routes = [
   {
@@ -55,6 +58,18 @@ const routes: Routes = [
   {
     path: 'schedule/confirm',
     component: ConfirmDayComponent
+  },
+  {
+    path: 'filter/work/log',
+    component: FilterWorklogComponent
+  },
+  {
+    path: 'filter/info',
+    component: FilterInfoComponent
+  },
+  {
+    path: 'unit/info',
+    component: UnitInfoComponent
   }
 ];
 

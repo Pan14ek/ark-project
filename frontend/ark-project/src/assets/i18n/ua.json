@@ -7,7 +7,8 @@
     "ADMIN_PANEL": "Адмін панель",
     "SIGN_OUT": "Вийти",
     "SIGN_IN": "Увійти",
-    "SIGN_UP": "Зареєструватися"
+    "SIGN_UP": "Зареєструватися",
+    "FILTER_WORK_LOG": "Фільтер ворк лог"
   },
   "SIGN_IN": {
     "ENTER_TO_APP": "Увійти до системи",
@@ -71,5 +72,23 @@
   "GENERAL": {
     "DESCRIPTION": "Опис",
     "CHANGE": "Змінити"
+  },
+  "WORK_LOG": {
+    "CODE": "Код",
+    "FILTER_TITLE": "Назва фільтру",
+    "UNIT_TITLE": "Назва відділу",
+    "SCAN_DATE_AND_TIME": "Дата та час перевірки",
+    "TEMPERATURE": "Температура",
+    "FILTER_CONTAMINATION": "Наскільки забруднився фільтр",
+    "GO_BACK": "Повернутися до попередньої сторінки"
+  },
+  "FILTER_INFO": {
+    "FILTER_INFO": "Інформація про фільтр",
+    "DIAMETER": "Діаметер",
+    "FILTER_TYPE": "Тип фільтру"
+  },
+  "UNIT_INFO": {
+    "UNIT_INFO": "Інформація про відділ",
+    "STATUS": "Статус"
   }
 }

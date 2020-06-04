@@ -26,6 +26,9 @@ import {UserScheduleComponent} from './components/user-schedule/user-schedule.co
 import {ConfirmDayComponent} from './components/confirm-day/confirm-day.component';
 import {HomeComponent} from './components/home/home.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {FilterWorklogComponent} from './components/filter-worklog/filter-worklog.component';
+import {FilterInfoComponent} from './components/filter-info/filter-info.component';
+import {UnitInfoComponent} from './components/unit-info/unit-info.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import {TranslateModule} from '@ngx-translate/core';
     SchedulesComponent,
     UserScheduleComponent,
     ConfirmDayComponent,
-    HomeComponent
+    HomeComponent,
+    FilterWorklogComponent,
+    FilterInfoComponent,
+    UnitInfoComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +74,11 @@ import {TranslateModule} from '@ngx-translate/core';
     ProfileComponent,
     SchedulesComponent,
     UserScheduleComponent,
-    ConfirmDayComponent
+    ConfirmDayComponent,
+    FilterWorklogComponent,
+    HomeComponent,
+    FilterInfoComponent,
+    UnitInfoComponent
   ],
   providers: [
     UserService,

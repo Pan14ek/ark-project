@@ -7,7 +7,8 @@
     "ADMIN_PANEL": "Admin panel",
     "SIGN_OUT": "Sign out",
     "SIGN_IN": "Sign in",
-    "SIGN_UP": "Sign up"
+    "SIGN_UP": "Sign up",
+    "FILTER_WORK_LOG": "Filter work log"
   },
   "SIGN_IN": {
     "ENTER_TO_APP": "Sign in to Factory application",
@@ -71,5 +72,23 @@
   "GENERAL": {
     "DESCRIPTION": "Description",
     "CHANGE": "Change"
+  },
+  "WORK_LOG": {
+    "CODE": "Code",
+    "FILTER_TITLE": "Filter title",
+    "UNIT_TITLE": "Unit title",
+    "SCAN_DATE_AND_TIME": "Scan date and time",
+    "TEMPERATURE": "Temperature",
+    "FILTER_CONTAMINATION": "Filter contamination",
+    "GO_BACK": "Go back"
+  },
+  "FILTER_INFO": {
+    "FILTER_INFO": "Filter information",
+    "DIAMETER": "Diameter",
+    "FILTER_TYPE": "Filter type"
+  },
+  "UNIT_INFO": {
+    "UNIT_INFO": "Unit information",
+    "STATUS": "Status"
   }
 }
