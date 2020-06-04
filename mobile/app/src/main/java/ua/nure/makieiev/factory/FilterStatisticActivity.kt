@@ -2,64 +2,77 @@ package ua.nure.makieiev.factory
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import ua.nure.makieiev.factory.adapter.StatisticListViewAdapter
+import ua.nure.makieiev.factory.facade.FilterWorkLogFacade
+import ua.nure.makieiev.factory.facade.RetrofitInstance
+import ua.nure.makieiev.factory.model.entity.FilterWorkLog
+import ua.nure.makieiev.factory.service.FilterWorkLogService
+import ua.nure.makieiev.factory.service.impl.FilterWorkLogServiceImpl
 
 
 class FilterStatisticActivity : AppCompatActivity() {
 
-    lateinit var listView: ListView
-    var titles = arrayOf("14-05-2020 20:00", "14-05-2020 21:00", "14-05-2020 22:00")
-    var temperatures = arrayOf("70 C", "65 C", " 80 C")
+    private lateinit var filterWorkLogService: FilterWorkLogService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter_statistic)
-        listView = findViewById(R.id.filterStatisticView)
-        val filterStatisticAdapter = FilterStatisticAdapter(this, titles, temperatures)
-        listView.adapter = filterStatisticAdapter
+        initObjects()
+        displayFilterStatisticInformation()
+    }
 
-        listView.onItemClickListener =
-            OnItemClickListener { parent, view, position, id ->
-                for (title in titles) {
-                    if (position == 0) {
-                        Toast.makeText(this, title, Toast.LENGTH_SHORT)
+    private fun initObjects() {
+        filterWorkLogService = FilterWorkLogServiceImpl()
+    }
+
+    private fun displayFilterStatisticInformation() {
+        val retrofitInstance =
+            RetrofitInstance.getRetrofitInstance().create(FilterWorkLogFacade::class.java)
+        val sharedPreference =
+            this.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        val token = sharedPreference.getString("token", "")
+        var filterWorkLogs: List<FilterWorkLog>
+        retrofitInstance.getAllFilterWorkLogs(token)
+            .enqueue(object : Callback<List<FilterWorkLog>> {
+                override fun onFailure(call: Call<List<FilterWorkLog>>, t: Throwable) {
+                    Toast.makeText(
+                        this@FilterStatisticActivity,
+                        t.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onResponse(
+                    call: Call<List<FilterWorkLog>>,
+                    response: Response<List<FilterWorkLog>>
+                ) {
+                    if (response.code() == 200) {
+                        filterWorkLogs = response.body()!!
+                        val filterStatisticListView =
+                            findViewById<ListView>(R.id.filterStatisticView)
+                        filterStatisticListView.adapter =
+                            StatisticListViewAdapter(this@FilterStatisticActivity, filterWorkLogs)
+                        val sharedPreference =
+                            this@FilterStatisticActivity.getSharedPreferences(
+                                "PREFERENCE_NAME",
+                                Context.MODE_PRIVATE
+                            )
+                        val edit = sharedPreference.edit()
+                        Toast.makeText(this@FilterStatisticActivity, "Success!", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        Toast.makeText(this@FilterStatisticActivity, "Failed!", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
-            }
-    }
+            })
 
-    class FilterStatisticAdapter(
-        context: Context,
-        var rTitle: Array<String>,
-        var rTemperatures: Array<String>
-    ) : ArrayAdapter<String>(context, R.layout.row, R.id.dateInfoText, rTitle) {
-
-
-        override fun getView(
-            position: Int,
-            convertView: View?,
-            parent: ViewGroup?
-        ): View {
-
-            val layoutInflater =
-                this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            val row: View = layoutInflater.inflate(R.layout.row, parent, false)
-            val myTitle: TextView = row.findViewById(R.id.dateInfoText)
-            val myDescription: TextView = row.findViewById(R.id.temperatureInfoText)
-
-            myTitle.text = "Check date : " + rTitle[position]
-            myDescription.text = "Temperature : " + rTemperatures[position]
-            return row
-        }
 
     }
 
