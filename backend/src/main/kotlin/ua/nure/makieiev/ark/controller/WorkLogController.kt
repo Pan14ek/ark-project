@@ -21,6 +21,8 @@ import ua.nure.makieiev.ark.model.entity.User
 import ua.nure.makieiev.ark.model.entity.WorkLog
 import ua.nure.makieiev.ark.service.UserService
 import ua.nure.makieiev.ark.service.WorkLogService
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.validation.Valid
 
@@ -54,9 +56,11 @@ class WorkLogController @Autowired constructor(private val workLogService: WorkL
     }
 
     @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
-    @GetMapping("/user/{id}")
-    fun findByUserId(@PathVariable id: Long): ResponseEntity<Any> {
-        val workLog: WorkLog? = workLogService.findByUserId(id)
+    @GetMapping("/user/{id}/workDate/{workDate}")
+    fun findByUserIdAndDate(@PathVariable id: Long, @PathVariable workDate: String): ResponseEntity<Any> {
+        val dateTimeFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val workLocalDate: LocalDate = LocalDate.parse(workDate, dateTimeFormatter)
+        val workLog: WorkLog? = workLogService.findByUserIdAndDate(id, workLocalDate)
         workLog?.let { return ResponseEntity(workLog, OK) }
         throw NotFoundException("Work log did not find by user id")
     }

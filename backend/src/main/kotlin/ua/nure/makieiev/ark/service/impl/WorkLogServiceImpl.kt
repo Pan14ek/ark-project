@@ -1,6 +1,7 @@
 package ua.nure.makieiev.ark.service.impl
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 import ua.nure.makieiev.ark.exception.IllegalWorkException
 import ua.nure.makieiev.ark.exception.response.NotFoundException
@@ -22,8 +23,8 @@ class WorkLogServiceImpl @Autowired constructor(private val workLogRepository: W
         return workLogRepository.findById(id)
     }
 
-    override fun findByUserId(userId: Long): WorkLog {
-        return workLogRepository.findByUserId(userId)
+    override fun findByUserIdAndDate(userId: Long, workDate: LocalDate): WorkLog {
+        return workLogRepository.findByUserIdAndWorkDate(userId, workDate)
     }
 
     override fun findAllByUserId(userId: Long): List<WorkLog> {
@@ -41,15 +42,17 @@ class WorkLogServiceImpl @Autowired constructor(private val workLogRepository: W
     }
 
     override fun save(workLog: WorkLog): WorkLog {
-        val userId: Long? = workLog.user!!.id
-        val pointConfig = obtainPointConfig()
-        val particularWorkLog = workLogRepository.findByUserIdAndWorkDate(userId!!, workLog.workDate!!)
-        checkParticularWorkLog(particularWorkLog)
-        val userPersonalSchedule = userPersonalScheduleRepository.findByUserIdAndWorkDate(userId, workLog.workDate!!)
-        if (Objects.nonNull(userPersonalSchedule)) {
-            workLog.amountPoints = pointConfig.defaultPoints
-        } else {
-            workLog.amountPoints = pointConfig.extraPoints
+        try {
+            val particularWorkLog: WorkLog? = workLog.user!!.id?.let { workLogRepository.findByUserIdAndWorkDate(it, workLog.workDate!!) }
+            checkParticularWorkLog(particularWorkLog)
+        } catch (exception: EmptyResultDataAccessException) {
+            val pointConfig = obtainPointConfig()
+            try {
+                val userPersonalSchedule = workLog.user!!.id?.let { userPersonalScheduleRepository.findByUserIdAndWorkDate(it, workLog.workDate!!) }
+                workLog.amountPoints = pointConfig.defaultPoints
+            } catch (exception: EmptyResultDataAccessException) {
+                workLog.amountPoints = pointConfig.extraPoints
+            }
         }
         return workLogRepository.save(workLog)
     }
@@ -63,10 +66,8 @@ class WorkLogServiceImpl @Autowired constructor(private val workLogRepository: W
         }
     }
 
-    private fun checkParticularWorkLog(particularWorkLog: WorkLog) {
-        if (Objects.nonNull(particularWorkLog)) {
-            throw IllegalWorkException("You marked today")
-        }
+    private fun checkParticularWorkLog(particularWorkLog: WorkLog?) {
+        particularWorkLog.let { throw IllegalWorkException("You marked today") }
     }
 
     companion object {

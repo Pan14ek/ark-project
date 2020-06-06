@@ -1,7 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType.LAZY
@@ -38,7 +37,6 @@ data class User(@Id
                 var password: String? = null,
                 @OneToOne(fetch = LAZY)
                 @JoinColumn(name = "Id_role")
-                @JsonManagedReference
                 var role: Role? = null,
                 @OneToMany(mappedBy = "user", fetch = LAZY)
                 @JsonBackReference

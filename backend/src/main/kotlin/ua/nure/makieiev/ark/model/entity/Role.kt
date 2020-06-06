@@ -1,6 +1,6 @@
 package ua.nure.makieiev.ark.model.entity
 
-import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -28,9 +28,9 @@ data class Role(
         @Size(min = 0, max = 200)
         @Column(name = "Description")
         var description: String? = null,
+        @JsonIgnore
         @OneToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "Id_role")
-        @JsonBackReference
         var user: User? = null
 ) {
     override fun toString(): String {
