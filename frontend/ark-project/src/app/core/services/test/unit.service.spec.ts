@@ -1,13 +1,13 @@
 import {TestBed} from '@angular/core/testing';
 
-import {FilterWorkLogService} from './filter-work-log.service';
+import {UnitService} from '../unit.service';
 
-describe('FilterWorkLogService', () => {
-  let service: FilterWorkLogService;
+describe('UnitService', () => {
+  let service: UnitService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FilterWorkLogService);
+    service = TestBed.inject(UnitService);
   });
 
   it('should be created', () => {

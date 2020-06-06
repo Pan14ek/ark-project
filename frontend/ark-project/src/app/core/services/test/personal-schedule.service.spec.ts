@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {PersonalScheduleService} from './personal-schedule.service';
+import {PersonalScheduleService} from '../personal-schedule.service';
 
 describe('PersonalScheduleService', () => {
   let service: PersonalScheduleService;

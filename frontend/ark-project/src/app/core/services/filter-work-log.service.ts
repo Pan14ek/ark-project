@@ -1,22 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment.prod';
+import {Service} from './service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FilterWorkLogService {
-
-  constructor(private http: HttpClient) {
-  }
+export class FilterWorkLogService extends Service {
 
   getAllFilterWorkLog() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.get(`${environment.apiHerokuBaseUrl}/filter/worklog/all`, httpOptions);
+    return this.serviceHttp.get(`${this.ENV_URL}/filter/worklog/all`, this.getOptions());
   }
 
 }

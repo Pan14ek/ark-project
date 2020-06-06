@@ -29,6 +29,8 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FilterWorklogComponent} from './components/filter-worklog/filter-worklog.component';
 import {FilterInfoComponent} from './components/filter-info/filter-info.component';
 import {UnitInfoComponent} from './components/unit-info/unit-info.component';
+import {FullCalendarModule} from '@fullcalendar/angular';
+import {ConfirmWorkdayComponent} from './components/confirm-workday/confirm-workday.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import {UnitInfoComponent} from './components/unit-info/unit-info.component';
     HomeComponent,
     FilterWorklogComponent,
     FilterInfoComponent,
-    UnitInfoComponent
+    UnitInfoComponent,
+    ConfirmWorkdayComponent
   ],
   imports: [
     CommonModule,
@@ -61,7 +64,8 @@ import {UnitInfoComponent} from './components/unit-info/unit-info.component';
     MatInputModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    FullCalendarModule
   ],
   exports: [
     HeaderComponent,

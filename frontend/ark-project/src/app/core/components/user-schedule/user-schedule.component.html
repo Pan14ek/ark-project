@@ -1,17 +1,1 @@
-<section class="section">
-  <div class="container">
-    <div class="columns is-multiline">
-
-      <div class="column is-4" *ngFor="let scheduleDay of scheduleDays | async">
-        <div class="card"
-             [ngStyle]="!scheduleDay.confirm ? {'background-color':'#ff9999'} : {'background-color':'#99ff99'}">
-          <div class="card-content">
-            <a routerLink="/schedule/confirm"
-               [queryParams]="{'personalScheduleId':scheduleDay.id, 'scheduleDayId': scheduleDay.personalSchedule.id}">{{ scheduleDay.workDate }}</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+<full-calendar [options]="calendarOptions" deepChangeDetection="true"></full-calendar>

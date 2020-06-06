@@ -35,7 +35,7 @@ export class SignInComponent implements OnInit {
     const userSignInDto = new UserSignInDto(this.login, this.password);
     this.userService.signInUser(userSignInDto).subscribe((userToken: UserToken) => {
         console.log(userToken);
-        localStorage.setItem('token', userToken.token);
+        localStorage.setItem('token', 'Bearer ' + userToken.token);
         localStorage.setItem('userId', String(userToken.user.id));
         localStorage.setItem('login', userToken.user.login);
         localStorage.setItem('role', userToken.user.role.symbol);

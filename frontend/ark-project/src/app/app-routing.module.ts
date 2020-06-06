@@ -13,6 +13,7 @@ import {ConfirmDayComponent} from './core/components/confirm-day/confirm-day.com
 import {FilterWorklogComponent} from './core/components/filter-worklog/filter-worklog.component';
 import {FilterInfoComponent} from './core/components/filter-info/filter-info.component';
 import {UnitInfoComponent} from './core/components/unit-info/unit-info.component';
+import {ConfirmWorkdayComponent} from './core/components/confirm-workday/confirm-workday.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,10 @@ const routes: Routes = [
   {
     path: 'unit/info',
     component: UnitInfoComponent
+  },
+  {
+    path: 'confirm/work/day',
+    component: ConfirmWorkdayComponent
   }
 ];
 

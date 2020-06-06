@@ -1,64 +1,35 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {PersonalScheduleDto} from '../../models/dto/PersonalScheduleDto';
-import {environment} from '../../../environments/environment.prod';
 import {UserPersonalScheduleDto} from '../../models/dto/UserPersonalScheduleDto';
 import {ConfirmDto} from '../../models/dto/ConfirmDto';
+import {Service} from './service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PersonalScheduleService {
-
-  constructor(private http: HttpClient) {
-  }
+export class PersonalScheduleService extends Service {
 
   addPersonalSchedule(personalScheduleDto: PersonalScheduleDto) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.post(`${environment.apiHerokuBaseUrl}/personal/schedule/add`, personalScheduleDto, httpOptions);
+    return this.serviceHttp.post(`${this.ENV_URL}/personal/schedule/add`,
+      personalScheduleDto, this.getOptionsWithJsonContent());
   }
 
   getAllSchedule() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.get(`${environment.apiHerokuBaseUrl}/personal/schedule/all`, httpOptions);
+    return this.serviceHttp.get(`${this.ENV_URL}/personal/schedule/all`, this.getOptions());
   }
 
   addUserPersonalSchedule(userPersonalScheduleDto: UserPersonalScheduleDto) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.post(`${environment.apiHerokuBaseUrl}/user/person/schedule/add`, userPersonalScheduleDto, httpOptions);
+    return this.serviceHttp.post(`${this.ENV_URL}/user/person/schedule/add`,
+      userPersonalScheduleDto, this.getOptionsWithJsonContent());
   }
 
   getAllSchedulesByUserId(userId: number) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.get(`${environment.apiHerokuBaseUrl}/user/person/schedule/${userId}`, httpOptions);
+    return this.serviceHttp.get(`${this.ENV_URL}/user/person/schedule/${userId}`, this.getOptions());
   }
 
   confirmWorkDay(confirmDto: ConfirmDto) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.post(`${environment.apiHerokuBaseUrl}/user/person/schedule/confirm`, confirmDto, httpOptions);
+    return this.serviceHttp.post(`${this.ENV_URL}/user/person/schedule/confirm`,
+      confirmDto, this.getOptionsWithJsonContent());
   }
 
 }

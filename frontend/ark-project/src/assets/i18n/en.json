@@ -3,7 +3,7 @@
     "HOME": "Home",
     "CONTACT": "Contact",
     "PROFILE": "Profile",
-    "SCHEDULE": "Schedule",
+    "SCHEDULE": "Work schedule",
     "ADMIN_PANEL": "Admin panel",
     "SIGN_OUT": "Sign out",
     "SIGN_IN": "Sign in",
@@ -60,14 +60,15 @@
     "MADE_BY": "Made by"
   },
   "SCHEDULE": {
-    "SCHEDULE": "Schedule",
+    "SCHEDULE": " Schedule",
     "CONFIRM": "Confirm",
     "WRITE_AMOUNT_DAYS": "Write amount days",
     "ADD_SCHEDULE_DAYS": "Add schedule days",
     "CHOOSE_AMOUNT_DAYS": "Choose amount days",
     "CHOOSE_DATE": "Choose date",
     "CHOOSE_USER": "Choose worker",
-    "ADD_WORK_DAY_TO_USER": "Add work day to user"
+    "ADD_WORK_DAY_TO_USER": "Add work day to user",
+    "CONFIRM_DAY_TEXT": "Please confirm this day if you want to work on this day!"
   },
   "GENERAL": {
     "DESCRIPTION": "Description",

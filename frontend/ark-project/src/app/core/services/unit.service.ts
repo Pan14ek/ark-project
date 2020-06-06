@@ -1,22 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment.prod';
+import {Service} from './service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UnitService {
-
-  constructor(private http: HttpClient) {
-  }
+export class UnitService extends Service {
 
   getUnitById(unitId: number) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.get(`${environment.apiHerokuBaseUrl}/unit/${unitId}`, httpOptions);
+    return this.serviceHttp.get(`${this.ENV_URL}/unit/${unitId}`, this.getOptions());
   }
 
 }

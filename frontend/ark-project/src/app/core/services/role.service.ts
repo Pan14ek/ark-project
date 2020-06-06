@@ -1,53 +1,27 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {environment} from '../../../environments/environment.prod';
 import {Role} from '../../models/entity/Role';
 import {RoleDto} from '../../models/dto/RoleDto';
+import {Service} from './service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleService {
-
-  constructor(private http: HttpClient) {
-  }
+export class RoleService extends Service {
 
   getAllRoles() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.get(`${environment.apiHerokuBaseUrl}/role/all`, httpOptions);
+    return this.serviceHttp.get(`${this.ENV_URL}/role/all`, this.getOptions());
   }
 
   getRoleByTitle(title: string) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.get(`${environment.apiHerokuBaseUrl}/role/title/${title}`, httpOptions);
+    return this.serviceHttp.get(`${this.ENV_URL}/role/title/${title}`, this.getOptions());
   }
 
   updateRole(role: Role) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.post(`${environment.apiHerokuBaseUrl}/role/update`, role, httpOptions);
+    return this.serviceHttp.post(`${this.ENV_URL}/role/update`, role, this.getOptionsWithJsonContent());
   }
 
   addRole(role: RoleDto) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      })
-    };
-    return this.http.post(`${environment.apiHerokuBaseUrl}/role/add`, role, httpOptions);
+    return this.serviceHttp.post(`${this.ENV_URL}/role/add`, role, this.getOptionsWithJsonContent());
   }
 
 }

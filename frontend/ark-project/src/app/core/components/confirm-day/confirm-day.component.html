@@ -1,3 +1,10 @@
-<form #confirmForm (ngSubmit)="confirm()">
-  <button class="button" [disabled]="confirmForm.invalid">{{'HOME.CONFIRM' | translate }}</button>
-</form>
+<section class="section">
+  <div class="container">
+    <form #confirmForm (ngSubmit)="confirm()">
+      <label for="confirmButton">{{'SCHEDULE.CONFIRM_DAY_TEXT' | translate }}</label>
+      <br>
+      <button id="confirmButton" class="button"
+              [disabled]="confirmForm.invalid">{{'SCHEDULE.CONFIRM' | translate }}</button>
+    </form>
+  </div>
+</section>
