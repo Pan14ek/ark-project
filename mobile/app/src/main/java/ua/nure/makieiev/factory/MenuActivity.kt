@@ -13,6 +13,7 @@ class MenuActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu)
         initProfileForm()
         initFilterStatistic()
+        initMarkWorkDayForm()
         initSignOut()
     }
 
@@ -20,6 +21,14 @@ class MenuActivity : AppCompatActivity() {
         val profileButton = findViewById<Button>(R.id.profileButton)
         profileButton.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun initMarkWorkDayForm() {
+        val markFormButton: Button = findViewById(R.id.markFormButton)
+        markFormButton.setOnClickListener {
+            val intent = Intent(this, MarkWorkDayActivity::class.java)
             startActivity(intent)
         }
     }

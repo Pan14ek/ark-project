@@ -17,4 +17,9 @@
     <string name="filter_statistic">Filter statistic</string>
     <string name="your_profile">Your profile</string>
     <string name="back">Back</string>
+    <string name="mark_form">Mark form</string>
+    <string name="mark">Mark</string>
+    <string name="mark_work_day_form">Mark work day form</string>
+    <string name="your_points">Your points</string>
+    <string name="you_marked_today_good_luck_and_work_carefully">You marked today! Good luck and work carefully!</string>
 </resources>

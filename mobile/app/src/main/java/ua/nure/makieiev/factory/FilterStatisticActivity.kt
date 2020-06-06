@@ -73,7 +73,6 @@ class FilterStatisticActivity : AppCompatActivity() {
                 }
             })
 
-
     }
 
 }

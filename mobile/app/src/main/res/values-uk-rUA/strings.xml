@@ -18,4 +18,6 @@
     <string name="your_profile">Ваш профіль</string>
     <string name="sign_out">Вийти</string>
     <string name="back">Назад</string>
+    <string name="mark_form">Mark form</string>
+    <string name="you_marked_today_good_luck_and_work_carefully">You marked today! Good luck and work carefully!</string>
 </resources>
