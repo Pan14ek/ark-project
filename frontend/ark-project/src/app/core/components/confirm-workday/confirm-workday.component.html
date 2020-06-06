@@ -4,9 +4,13 @@
     <br>
     <p><strong>Date : </strong> {{workDate}}</p>
     <br>
-
-    <br>
-    <button class="button is-primary is-light"
-            routerLink="/user/schedule">{{'WORK_LOG.GO_BACK' | translate }}</button>
+    <p *ngIf="flag"> You got points on this day : {{amountPoints}}</p>
+    <div class="buttons">
+      <button class="button is-success" (click)="markWorkDay()"
+              routerLink="/user/schedule" *ngIf="!flag">Mark day
+      </button>
+      <button class="button is-primary is-light"
+              routerLink="/user/schedule">{{'WORK_LOG.GO_BACK' | translate }}</button>
+    </div>
   </div>
 </section>

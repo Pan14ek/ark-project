@@ -1,0 +1,52 @@
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        {{'CONTACT.CONTACT_US' | translate }}
+      </h1>
+    </div>
+  </div>
+</section>
+<section class="section is-fullheight">
+  <div class="container">
+
+    <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+      <div class="field">
+        <label class="label" for="name">{{'CONTACT.NAME' | translate }}</label>
+        <div class="control">
+          <input class="input" type="text" id="name" name="name" [(ngModel)]="name" #nameInput="ngModel" required>
+          <div class="help is-danger" *ngIf="nameInput.invalid && nameInput.touched">
+            {{'CONTACT.NAME_REQUIRED' | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="email">{{'CONTACT.EMAIL' | translate }}</label>
+        <div class="control">
+          <input class="input" type="email" id="email" name="email" [(ngModel)]="email" #emailInput="ngModel" required
+                 email>
+          <div class="help is-danger" *ngIf="emailInput.invalid && emailInput.touched">
+            {{'CONTACT.INVALID_EMAIL' | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="message">{{'CONTACT.YOUR_MESSAGE' | translate }}</label>
+        <div class="control">
+          <textarea class="textarea" id="message" name="message"
+                    placeholder="{{'CONTACT.WRITE_YOUR_MESSAGE' | translate }}"
+                    [(ngModel)]="message"></textarea>
+        </div>
+      </div>
+
+      <div class="control">
+        <button class="button is-large is-primary"
+                [disabled]="contactForm.invalid">{{'CONTACT.SEND' | translate }}</button>
+      </div>
+
+    </form>
+
+  </div>
+</section>
