@@ -152,7 +152,7 @@
 
             <div class="control has-text-centered">
               <button class="button is-large is-primary"
-                      [disabled]="signUpForm.invalid">Add user
+                      [disabled]="signUpForm.invalid"> {{'ADMIN_PANEL.ADD_USER' | translate }}
               </button>
             </div>
 
@@ -160,7 +160,7 @@
 
           <!-- Choose user -->
           <mat-form-field *ngIf="updateFormFlag">
-            <label for="selectUser">Choose user</label>
+            <label for="selectUser">{{'ADMIN_PANEL.CHOOSE_USER' | translate }}</label>
             <select matNativeControl [(ngModel)]="selectedUserLogin" id="selectUser" (change)="showInfo()">
               <option value="" selected></option>
               <option *ngFor="let user of users">
@@ -257,7 +257,7 @@
 
             <div class="control has-text-centered">
               <button class="button is-large is-primary"
-                      [disabled]="signUpForm.invalid">Update user
+                      [disabled]="signUpForm.invalid">{{'ADMIN_PANEL.UPDATE_USER'| translate}}
               </button>
             </div>
 

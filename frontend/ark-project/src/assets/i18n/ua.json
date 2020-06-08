@@ -97,5 +97,18 @@
   },
   "FILTER": {
     "FILTER": "Фільтер"
+  },
+  "CHEMICAL_SUBSTANCES": {
+    "CHEMICAL_SUBSTANCES": "Хімічні речовини",
+    "TITLE": "Назва хім речовини",
+    "FORMULA": "Хімічна формула"
+  },
+  "ADMIN_PANEL": {
+    "ADMIN_PANEL": "Адміністративна панель",
+    "ADD_FILTER": "Додати фільтер",
+    "ADD_CHEMICAL_SUBSTANCE": "Додати хімічну речовину",
+    "ADD_USER": "Додати користувача",
+    "CHOOSE_USER": "Виберіть користувача",
+    "UPDATE_USER": "Оновити дані користувача"
   }
 }

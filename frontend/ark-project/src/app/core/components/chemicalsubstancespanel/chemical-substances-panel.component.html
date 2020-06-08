@@ -22,7 +22,7 @@
           <form (ngSubmit)="addChemicalSubstances()" *ngIf="addFormFlag" #addForm="ngForm">
 
             <div class="field">
-              <label class="label" for="addTitle">{{'ROLE.TITLE' | translate }}</label>
+              <label class="label" for="addTitle">{{'CHEMICAL_SUBSTANCES.TITLE'| translate}}</label>
               <div class="control">
                 <input class="input" type="text" id="addTitle" name="title" [(ngModel)]="title" required
                        maxlength="45">
@@ -30,7 +30,7 @@
             </div>
 
             <div class="field">
-              <label class="label" for="addFormula">{{'FILTER_INFO.FILTER_TYPE' | translate}}</label>
+              <label class="label" for="addFormula">{{'CHEMICAL_SUBSTANCES.FORMULA'| translate}}</label>
               <div class="control">
                 <input class="input" type="text" id="addFormula" name="formula" [(ngModel)]="formula" required
                        maxlength="45">
@@ -39,7 +39,7 @@
 
             <div class="control has-text-centered">
               <button class="button is-large is-primary"
-                      [disabled]="addForm.invalid">Add filter
+                      [disabled]="addForm.invalid">{{'ADMIN_PANEL.ADD_CHEMICAL_SUBSTANCE' | translate}}
               </button>
             </div>
 
@@ -50,8 +50,8 @@
             <thead>
             <tr>
               <th>{{'WORK_LOG.CODE'| translate}}</th>
-              <th>Title</th>
-              <th>Formula</th>
+              <th>{{'CHEMICAL_SUBSTANCES.TITLE'| translate}}</th>
+              <th>{{'CHEMICAL_SUBSTANCES.FORMULA'| translate}}</th>
             </tr>
             </thead>
             <tbody>

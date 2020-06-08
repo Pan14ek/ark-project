@@ -72,7 +72,8 @@
   },
   "GENERAL": {
     "DESCRIPTION": "Description",
-    "CHANGE": "Change"
+    "CHANGE": "Change",
+    "CLOSE": "Close"
   },
   "WORK_LOG": {
     "CODE": "Code",
@@ -97,5 +98,18 @@
   },
   "FILTER": {
     "FILTER": "Filter"
+  },
+  "CHEMICAL_SUBSTANCES": {
+    "CHEMICAL_SUBSTANCES": "Chemical Substances",
+    "TITLE": "Title",
+    "FORMULA": "Formula"
+  },
+  "ADMIN_PANEL": {
+    "ADMIN_PANEL": "Admin panel",
+    "ADD_FILTER": "Add filter",
+    "ADD_CHEMICAL_SUBSTANCE": "Add chemical substance",
+    "ADD_USER": "Add user",
+    "CHOOSE_USER": "Choose user",
+    "UPDATE_USER": "Update user"
   }
 }
