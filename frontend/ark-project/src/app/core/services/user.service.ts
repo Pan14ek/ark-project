@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserSignUpDto} from '../../models/dto/UserSignUpDto';
 import {UserSignInDto} from '../../models/dto/UserSignInDto';
 import {Service} from './service';
+import {User} from '../../models/entity/User';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class UserService extends Service {
 
   signInUser(userSignInDto: UserSignInDto) {
     return this.serviceHttp.post(`${this.ENV_URL}/user/signIn`, userSignInDto);
+  }
+
+  updateUser(user: User) {
+    return this.serviceHttp.put(`${this.ENV_URL}/user/update`, user, this.getOptionsWithJsonContent());
   }
 
 }

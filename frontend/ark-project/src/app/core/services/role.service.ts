@@ -17,7 +17,7 @@ export class RoleService extends Service {
   }
 
   updateRole(role: Role) {
-    return this.serviceHttp.post(`${this.ENV_URL}/role/update`, role, this.getOptionsWithJsonContent());
+    return this.serviceHttp.put(`${this.ENV_URL}/role/update`, role, this.getOptionsWithJsonContent());
   }
 
   addRole(role: RoleDto) {

@@ -91,5 +91,11 @@
   "UNIT_INFO": {
     "UNIT_INFO": "Unit information",
     "STATUS": "Status"
+  },
+  "USER": {
+    "USER": "User"
+  },
+  "FILTER": {
+    "FILTER": "Filter"
   }
 }

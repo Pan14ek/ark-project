@@ -31,6 +31,8 @@ import {FilterInfoComponent} from './components/filter-info/filter-info.componen
 import {UnitInfoComponent} from './components/unit-info/unit-info.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {ConfirmWorkdayComponent} from './components/confirm-workday/confirm-workday.component';
+import {FilterpanelComponent} from './components/filterpanel/filterpanel.component';
+import {ChemicalSubstancesPanelComponent} from './components/chemicalsubstancespanel/chemical-substances-panel.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import {ConfirmWorkdayComponent} from './components/confirm-workday/confirm-work
     FilterWorklogComponent,
     FilterInfoComponent,
     UnitInfoComponent,
-    ConfirmWorkdayComponent
+    ConfirmWorkdayComponent,
+    FilterpanelComponent,
+    ChemicalSubstancesPanelComponent
   ],
   imports: [
     CommonModule,

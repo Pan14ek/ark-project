@@ -1,70 +1,78 @@
-<app-adminpanel></app-adminpanel>
+<div class="columns">
 
+  <app-adminpanel></app-adminpanel>
 
-<div class="buttons">
-  <button class="button is-link" (click)="showAddScheduleDayForm()">
-    {{addScheduleDayFlag ? 'Close' : 'Add schedule day'}}</button>
-  <button class="button is-info" (click)="showAddUserScheduleDayForm()">
-    {{addUserScheduleDayFlag ? 'Close' : 'Add user schedule'}}</button>
-</div>
+  <div class="column">
 
-<section class="section" *ngIf="addScheduleDayFlag">
-  <div class="container">
+    <div class="box">
 
-    <form #addScheduleDayForm (ngSubmit)="addScheduleDay()">
+      <section class="section">
 
-      <div class="field">
-        <label class="label" for="amountDays">{{'SCHEDULE.WRITE_AMOUNT_DAYS' | translate }}</label>
-        <div class="control">
-          <input class="input" type="number" id="amountDays" name="amountDays" [(ngModel)]="amountDays"
-                 required>
+        <div class="container">
+
+          <div class="buttons">
+            <button class="button is-link" (click)="showAddScheduleDayForm()">
+              {{addScheduleDayFlag ? 'Close' : 'Add schedule day'}}</button>
+            <button class="button is-info" (click)="showAddUserScheduleDayForm()">
+              {{addUserScheduleDayFlag ? 'Close' : 'Add user schedule'}}</button>
+          </div>
+
+          <form #addScheduleDayForm (ngSubmit)="addScheduleDay()" *ngIf="addScheduleDayFlag">
+
+            <div class="field">
+              <label class="label" for="amountDays">{{'SCHEDULE.WRITE_AMOUNT_DAYS' | translate }}</label>
+              <div class="control">
+                <input class="input is-rounded is-small" type="number" id="amountDays" name="amountDays"
+                       [(ngModel)]="amountDays" required>
+              </div>
+            </div>
+
+            <div class="control">
+              <button class="button is-primary"
+                      [disabled]="addScheduleDayForm.invalid">{{'SCHEDULE.ADD_SCHEDULE_DAYS' | translate }}</button>
+            </div>
+
+          </form>
+
+          <form #addUserScheduleDay (ngSubmit)="addUserPersonalSchedule()" *ngIf="addUserScheduleDayFlag">
+
+            <mat-form-field>
+              <label for="selectedScheduleId">{{'SCHEDULE.CHOOSE_AMOUNT_DAYS' | translate }}</label>
+              <select matNativeControl [(ngModel)]="selectedScheduleId" id="selectedScheduleId"
+                      name="selectedScheduleId">
+                <option value="" selected></option>
+                <option *ngFor="let scheduleDay of schedulesDays" [value]="scheduleDay.id">
+                  {{scheduleDay.amountDays}}
+                </option>
+              </select>
+            </mat-form-field>
+
+            <label for="calendar">{{'SCHEDULE.CHOOSE_DATE' | translate }}</label>
+            <input type="date" name="calendar" id="calendar" [(ngModel)]="workDate" (change)="showWorkDate()">
+
+            <mat-form-field>
+              <label for="selectedUserLogin">{{'SCHEDULE.CHOOSE_USER' | translate }}</label>
+              <select matNativeControl [(ngModel)]="selectedUserLogin" id="selectedUserLogin" name="selectedUserLogin">
+                <option value="" selected></option>
+                <option *ngFor="let user of users" [value]="user.login">
+                  {{user.login}}
+                </option>
+              </select>
+            </mat-form-field>
+
+            <div class="control">
+              <button class="button is-large is-primary"
+                      [disabled]="addUserScheduleDay.invalid">{{'SCHEDULE.ADD_WORK_DAY_TO_USER' | translate }}</button>
+            </div>
+
+          </form>
+
         </div>
-      </div>
 
-      <div class="control has-text-centered">
-        <button class="button is-large is-primary"
-                [disabled]="addScheduleDayForm.invalid">{{'SCHEDULE.ADD_SCHEDULE_DAYS' | translate }}</button>
-      </div>
+      </section>
 
-    </form>
+    </div>
 
   </div>
-</section>
 
-<section class="section" *ngIf="addUserScheduleDayFlag">
-  <div class="container has-text-centered">
-
-    <form #addUserScheduleDay (ngSubmit)="addUserPersonalSchedule()">
-
-      <mat-form-field>
-        <label for="selectedScheduleId">{{'SCHEDULE.CHOOSE_AMOUNT_DAYS' | translate }}</label>
-        <select matNativeControl [(ngModel)]="selectedScheduleId" id="selectedScheduleId" name="selectedScheduleId">
-          <option value="" selected></option>
-          <option *ngFor="let scheduleDay of schedulesDays" [value]="scheduleDay.id">
-            {{scheduleDay.amountDays}}
-          </option>
-        </select>
-      </mat-form-field>
-
-      <label for="calendar">{{'SCHEDULE.CHOOSE_DATE' | translate }}</label>
-      <input type="date" name="calendar" id="calendar" [(ngModel)]="workDate" (change)="showWorkDate()">
-
-      <mat-form-field>
-        <label for="selectedUserLogin">{{'SCHEDULE.CHOOSE_USER' | translate }}</label>
-        <select matNativeControl [(ngModel)]="selectedUserLogin" id="selectedUserLogin" name="selectedUserLogin">
-          <option value="" selected></option>
-          <option *ngFor="let user of users" [value]="user.login">
-            {{user.login}}
-          </option>
-        </select>
-      </mat-form-field>
-
-      <div class="control has-text-centered">
-        <button class="button is-large is-primary"
-                [disabled]="addUserScheduleDay.invalid">{{'SCHEDULE.ADD_WORK_DAY_TO_USER' | translate }}</button>
-      </div>
-
-    </form>
-
-  </div>
-</section>
+</div>

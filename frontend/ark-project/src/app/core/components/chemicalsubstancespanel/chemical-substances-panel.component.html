@@ -1,0 +1,30 @@
+<div class="columns">
+
+  <app-adminpanel></app-adminpanel>
+
+  <div class="column">
+
+    <div class="box">
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="buttons">
+            <button class="button is-link"
+                    (click)="showAddForm()">{{addFormFlag ? 'Close' : 'Add chemical substance'}}</button>
+            <button class="button is-link"
+                    (click)="showUpdateForm()">{{updateFormFlag ? 'Close' : 'Update chemical substance'}}</button>
+            <button class="button is-link"
+                    (click)="showAllFilters()">{{showAllFiltersFlag ? 'Close' : 'Show all chemical substances'}}</button>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>

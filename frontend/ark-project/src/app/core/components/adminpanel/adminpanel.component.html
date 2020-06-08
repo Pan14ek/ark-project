@@ -1,29 +1,14 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://image.flaticon.com/icons/svg/2416/2416666.svg">
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-       data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-
-      <a class="navbar-item" routerLink="/admin/panel/roles">
-        {{'ROLE.ROLE' | translate }}
-      </a>
-
-      <a class="navbar-item" routerLink="/admin/panel/schedule">
-        {{'SCHEDULE.SCHEDULE' | translate }}
-      </a>
-
-    </div>
-
-  </div>
-</nav>
+<div class="column">
+  <nav class="menu">
+    <p class="menu-label">
+      Admin panel
+    </p>
+    <ul class="menu-list">
+      <li><a routerLink="/admin/panel/roles">{{'ROLE.ROLE' | translate }}</a></li>
+      <li><a routerLink="/admin/panel/schedule">{{'SCHEDULE.SCHEDULE' | translate }}</a></li>
+      <li><a routerLink="/admin/panel/users">{{'USER.USER' | translate}}</a></li>
+      <li><a routerLink="/admin/panel/filter">{{'FILTER.FILTER' | translate}}</a></li>
+      <li><a routerLink="/admin/panel/chemical/substances">Chemical Substances</a></li>
+    </ul>
+  </nav>
+</div>

@@ -3,10 +3,29 @@
     <h1 class="title">{{'FILTER_INFO.FILTER_INFO' | translate }}</h1>
     <br>
     <div class="card" *ngIf="filter">
+
       <h2><strong>{{'WORK_LOG.FILTER_TITLE' | translate }} : </strong> {{ filter.title }}</h2>
       <h3><strong>{{'FILTER_INFO.DIAMETER' | translate }} : </strong> {{ filter.diameter }}</h3>
       <h3><strong>{{'FILTER_INFO.FILTER_TYPE' | translate }} : </strong> {{ filter.filterType }}</h3>
+      <br>
+      <h3 class="title">The filter protects against such elements:</h3>
+      <br>
+      <div class="columns">
+        <div class="column" *ngFor="let filterChemicalSubstance of filterChemicalSubstances">
+          <div class="card">
+            <div class="content">
+              <p class="title has-text-centered">
+                Element
+              </p>
+              <p><strong>Title : </strong> {{filterChemicalSubstance.chemicalSubstance.title}}</p>
+              <p><strong>Formula : </strong> {{filterChemicalSubstance.chemicalSubstance.formula}}</p>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
     </div>
+
     <br>
     <button class="button is-primary is-light"
             routerLink="/filter/work/log">{{'WORK_LOG.GO_BACK' | translate }}</button>

@@ -1,2 +1,296 @@
-<app-adminpanel></app-adminpanel>
+<div class="columns">
 
+  <app-adminpanel></app-adminpanel>
+
+  <div class="column">
+
+    <div class="box">
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="buttons">
+            <button class="button is-link" (click)="showAddForm()">{{addFormFlag ? 'Close' : 'Add user'}}</button>
+            <button class="button is-link"
+                    (click)="showUpdateForm()">{{updateFormFlag ? 'Close' : 'Update user'}}</button>
+            <button class="button is-link"
+                    (click)="showAllUsers()">{{showAllUsersFlag ? 'Close' : 'Show all users'}}</button>
+          </div>
+
+          <!-- Add form -->
+          <form (ngSubmit)="submitForm()" #signUpForm="ngForm" *ngIf="addFormFlag">
+
+            <div class="field">
+              <label class="label" for="firstName">{{'SIGN_UP.FIRST_NAME' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="firstName" name="firstName" [(ngModel)]="firstName"
+                       #firstNameInput="ngModel" required minlength="3" maxlength="40">
+
+                <div class="help is-danger"
+                     *ngIf="firstNameInput.invalid && (firstNameInput.dirty || firstNameInput.touched)">
+
+                  <div *ngIf="firstNameInput.errors.required">
+                    {{'SIGN_UP.FIRST_NAME_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="firstNameInput.errors.minlength">
+                    {{'SIGN_UP.FIRST_NAME_LENGTH' | translate }}
+                  </div>
+
+                </div>
+
+
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="lastName">{{'SIGN_UP.LAST_NAME' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="lastName" name="lastName" [(ngModel)]="lastName"
+                       #lastNameInput="ngModel"
+                       required minlength="3" maxlength="40">
+
+                <div class="help is-danger"
+                     *ngIf="lastNameInput.invalid && (lastNameInput.dirty || lastNameInput.touched)">
+
+                  <div *ngIf="lastNameInput.errors.required">
+                    {{'SIGN_UP.LAST_NAME_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="lastNameInput.errors.minlength">
+                    {{'SIGN_UP.LAST_NAME_LENGTH' | translate }}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="login">{{'SIGN_IN.LOGIN' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="login" name="login" [(ngModel)]="login" #loginInput="ngModel"
+                       required
+                       minlength="6" maxlength="45">
+
+                <div class="help is-danger" *ngIf="loginInput.invalid && (loginInput.dirty || loginInput.touched)">
+
+                  <div *ngIf="loginInput.errors.required">
+                    {{'SIGN_IN.LOGIN_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="loginInput.errors.minlength">
+                    {{'SIGN_IN.LOGIN_HAS_MORE_THEN_SIX_SYMBOLS' | translate }}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="email">{{'CONTACT.EMAIL' | translate }}</label>
+              <div class="control">
+                <input class="input" type="email" id="email" name="email" [(ngModel)]="email" #emailInput="ngModel"
+                       required
+                       email maxlength="100">
+                <div class="help is-danger" *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+
+                  <div *ngIf="emailInput.errors.required">
+                    {{'CONTACT.INVALID_EMAIL' | translate }}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="password">{{'SIGN_IN.PASSWORD' | translate }}</label>
+              <div class="control">
+                <input class="input" type="password" id="password" name="password" [(ngModel)]="password"
+                       #passwordInput="ngModel" required minlength="8" maxlength="45">
+                <div class="help is-danger"
+                     *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+
+                  <div *ngIf="passwordInput.errors.required">
+                    {{'SIGN_IN.PASSWORD_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="passwordInput.errors.minlength">
+                    {{'SIGN_IN.PASSWORD_LENGTH' | translate }}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="repeatPassword">{{'SIGN_UP.REPEAT_PASSWORD' | translate }}</label>
+              <div class="control">
+                <input class="input" type="password" id="repeatPassword" name="repeatPassword"
+                       [(ngModel)]="repeatPassword"
+                       #repeatPasswordInput="ngModel" required minlength="8" maxlength="45">
+                <div class="help is-danger"
+                     *ngIf="repeatPasswordInput.invalid && (passwordInput.dirty || passwordInput.touched) && repeatPasswordInput != passwordInput">
+
+                  <div *ngIf="passwordInput.errors.required">
+                    {{'SIGN_UP.REPEAT_PASSWORD_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="passwordInput.errors.minlength">
+                    {{'SIGN_UP.REPEAT_PASSWORD_LENGTH' | translate }}
+                  </div>
+
+                  <div *ngIf="repeatPasswordInput != passwordInput">
+                    {{'SIGN_UP.REPEAT_PASSWORD_NOT_EQUAL_PASSWORD' | translate }}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="control has-text-centered">
+              <button class="button is-large is-primary"
+                      [disabled]="signUpForm.invalid">Add user
+              </button>
+            </div>
+
+          </form>
+
+          <!-- Choose user -->
+          <mat-form-field *ngIf="updateFormFlag">
+            <label for="selectUser">Choose user</label>
+            <select matNativeControl [(ngModel)]="selectedUserLogin" id="selectUser" (change)="showInfo()">
+              <option value="" selected></option>
+              <option *ngFor="let user of users">
+                {{user.login}}
+              </option>
+            </select>
+          </mat-form-field>
+
+          <!-- Update form -->
+          <form (ngSubmit)="updateUser()" #signUpForm="ngForm" *ngIf="selectedUserLogin">
+
+            <div class="field">
+              <label class="label" for="firstName">{{'SIGN_UP.FIRST_NAME' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName"
+                       #firstNameInput="ngModel" required minlength="3" maxlength="40">
+
+                <div class="help is-danger"
+                     *ngIf="firstNameInput.invalid && (firstNameInput.dirty || firstNameInput.touched)">
+
+                  <div *ngIf="firstNameInput.errors.required">
+                    {{'SIGN_UP.FIRST_NAME_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="firstNameInput.errors.minlength">
+                    {{'SIGN_UP.FIRST_NAME_LENGTH' | translate }}
+                  </div>
+
+                </div>
+
+
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="lastName">{{'SIGN_UP.LAST_NAME' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName"
+                       #lastNameInput="ngModel"
+                       required minlength="3" maxlength="40">
+
+                <div class="help is-danger"
+                     *ngIf="lastNameInput.invalid && (lastNameInput.dirty || lastNameInput.touched)">
+
+                  <div *ngIf="lastNameInput.errors.required">
+                    {{'SIGN_UP.LAST_NAME_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="lastNameInput.errors.minlength">
+                    {{'SIGN_UP.LAST_NAME_LENGTH' | translate }}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="login">{{'SIGN_IN.LOGIN' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="login" name="login" [(ngModel)]="user.login" #loginInput="ngModel"
+                       required minlength="6" maxlength="45" [value]="selectedUserLogin">
+
+                <div class="help is-danger" *ngIf="loginInput.invalid && (loginInput.dirty || loginInput.touched)">
+
+                  <div *ngIf="loginInput.errors.required">
+                    {{'SIGN_IN.LOGIN_REQUIRED' | translate }}
+                  </div>
+
+                  <div *ngIf="loginInput.errors.minlength">
+                    {{'SIGN_IN.LOGIN_HAS_MORE_THEN_SIX_SYMBOLS' | translate }}
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="email">{{'CONTACT.EMAIL' | translate }}</label>
+              <div class="control">
+                <input class="input" type="email" id="email" name="email" [(ngModel)]="user.email" #emailInput="ngModel"
+                       required
+                       email maxlength="100">
+                <div class="help is-danger" *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+
+                  <div *ngIf="emailInput.errors.required">
+                    {{'CONTACT.INVALID_EMAIL' | translate }}
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="control has-text-centered">
+              <button class="button is-large is-primary"
+                      [disabled]="signUpForm.invalid">Update user
+              </button>
+            </div>
+
+          </form>
+
+          <!-- All users info -->
+          <table class="table" *ngIf="showAllUsersFlag">
+            <thead>
+            <tr>
+              <th>{{'WORK_LOG.CODE'| translate}}</th>
+              <th>{{'SIGN_UP.FIRST_NAME' | translate }}</th>
+              <th>{{'SIGN_UP.LAST_NAME' | translate }}</th>
+              <th>{{'SIGN_IN.LOGIN' | translate }}</th>
+              <th>{{'CONTACT.EMAIL' | translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{user.id}}</td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.login}}</td>
+              <td>{{user.email}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,13 +1,10 @@
-export class Filter {
+export class FilterDto {
 
-  id: number;
   title: string;
   diameter: string;
   filterType: string;
 
-
-  constructor(id: number, title: string, diameter: string, filterType: string) {
-    this.id = id;
+  constructor(title: string, diameter: string, filterType: string) {
     this.title = title;
     this.diameter = diameter;
     this.filterType = filterType;

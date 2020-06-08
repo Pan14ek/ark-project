@@ -14,6 +14,8 @@ import {FilterWorklogComponent} from './core/components/filter-worklog/filter-wo
 import {FilterInfoComponent} from './core/components/filter-info/filter-info.component';
 import {UnitInfoComponent} from './core/components/unit-info/unit-info.component';
 import {ConfirmWorkdayComponent} from './core/components/confirm-workday/confirm-workday.component';
+import {FilterpanelComponent} from './core/components/filterpanel/filterpanel.component';
+import {ChemicalSubstancesPanelComponent} from './core/components/chemicalsubstancespanel/chemical-substances-panel.component';
 
 const routes: Routes = [
   {
@@ -51,6 +53,14 @@ const routes: Routes = [
   }, {
     path: 'admin/panel/schedule',
     component: SchedulesComponent
+  },
+  {
+    path: 'admin/panel/filter',
+    component: FilterpanelComponent
+  },
+  {
+    path: 'admin/panel/chemical/substances',
+    component: ChemicalSubstancesPanelComponent
   },
   {
     path: 'user/schedule',

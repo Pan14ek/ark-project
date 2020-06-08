@@ -18,6 +18,8 @@ export class RolepanelComponent implements OnInit {
   roleSymbol;
   description;
   addFormFlag;
+  updateFormFlag;
+  showAllRolesFlag;
 
   constructor(private roleService: RoleService) {
   }
@@ -31,14 +33,13 @@ export class RolepanelComponent implements OnInit {
       this.roleService.getRoleByTitle(this.selectedRoleTitle).subscribe((responseRole: Role) => {
           this.role = responseRole;
           this.roleSymbol = this.role.symbol;
-          console.log(this.role);
         },
         error => console.log(error));
     }
   }
 
   updateInfo() {
-    console.log(this.roleService.updateRole(this.role).subscribe((result: boolean) => console.log(result)));
+    this.roleService.updateRole(this.role).subscribe((result: boolean) => console.log(result));
   }
 
   showAddForm() {
@@ -51,6 +52,15 @@ export class RolepanelComponent implements OnInit {
     this.roleService.addRole(roleParameters).subscribe((responseRole: Role) => {
       this.role = responseRole;
     });
+  }
+
+  showUpdateForm() {
+    this.updateFormFlag = !this.updateFormFlag;
+    this.selectedRoleTitle = '';
+  }
+
+  showAllRoles() {
+    this.showAllRolesFlag = !this.showAllRolesFlag;
   }
 
 }

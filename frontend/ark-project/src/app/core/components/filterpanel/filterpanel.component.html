@@ -1,0 +1,131 @@
+<div class="columns">
+
+  <app-adminpanel></app-adminpanel>
+
+  <div class="column">
+
+    <div class="box">
+
+      <section class="section">
+
+        <div class="container">
+
+          <div class="buttons">
+            <button class="button is-link" (click)="showAddForm()">{{addFormFlag ? 'Close' : 'Add filter'}}</button>
+            <button class="button is-link"
+                    (click)="showUpdateForm()">{{updateFormFlag ? 'Close' : 'Update filter'}}</button>
+            <button class="button is-link"
+                    (click)="showAllFilters()">{{showAllFiltersFlag ? 'Close' : 'Show all filters'}}</button>
+          </div>
+
+          <form (ngSubmit)="addFilter()" *ngIf="addFormFlag" #addForm="ngForm">
+
+            <div class="field">
+              <label class="label" for="addTitle">{{'ROLE.TITLE' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="addTitle" name="title" [(ngModel)]="filterTitle" required
+                       minlength="5"
+                       maxlength="45">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="addDiameter">{{'FILTER_INFO.DIAMETER' | translate}}</label>
+              <div class="control">
+                <input class="input" type="number" id="addDiameter" name="diameter" [(ngModel)]="filterDiameter"
+                       required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="addFilterType">{{'FILTER_INFO.FILTER_TYPE' | translate}}</label>
+              <div class="control">
+                <input class="input" type="text" id="addFilterType" name="filterType" [(ngModel)]="filterType" required
+                       minlength="5"
+                       maxlength="45">
+              </div>
+            </div>
+
+            <div class="control has-text-centered">
+              <button class="button is-large is-primary"
+                      [disabled]="addForm.invalid">Add filter
+              </button>
+            </div>
+
+          </form>
+
+          <mat-form-field *ngIf="updateFormFlag">
+            <label for="selectRoles">Choose filters</label>
+            <select matNativeControl [(ngModel)]="selectedFilterTitle" id="selectRoles" (change)="showInfo()">
+              <option value="" selected></option>
+              <option *ngFor="let filter of filters">
+                {{filter.title}}
+              </option>
+            </select>
+          </mat-form-field>
+
+          <!-- Update form -->
+
+          <form (ngSubmit)="updateFilter() " *ngIf="selectedFilterTitle" #updateForm="ngForm">
+
+            <div class="field">
+              <label class="label" for="addTitle">{{'ROLE.TITLE' | translate }}</label>
+              <div class="control">
+                <input class="input" type="text" id="addTitle" name="title" [(ngModel)]="filter.title" required
+                       minlength="5" maxlength="45" [value]="selectedFilterTitle">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="addDiameter">{{'FILTER_INFO.DIAMETER' | translate}}</label>
+              <div class="control">
+                <input class="input" type="number" id="addDiameter" name="diameter" [(ngModel)]="filter.diameter"
+                       required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label" for="addFilterType">{{'FILTER_INFO.FILTER_TYPE' | translate}}</label>
+              <div class="control">
+                <input class="input" type="text" id="addFilterType" name="filterType" [(ngModel)]="filter.filterType"
+                       required minlength="5" maxlength="45">
+              </div>
+            </div>
+
+            <div class="control has-text-centered">
+              <button class="button is-large is-primary"
+                      [disabled]="updateForm.invalid">Add filter
+              </button>
+            </div>
+
+          </form>
+
+          <!-- All filters info -->
+          <table class="table" *ngIf="showAllFiltersFlag">
+            <thead>
+            <tr>
+              <th>{{'WORK_LOG.CODE'| translate}}</th>
+              <th>{{'ROLE.TITLE' | translate }}</th>
+              <th>{{'FILTER_INFO.DIAMETER' | translate}}</th>
+              <th>{{'FILTER_INFO.FILTER_TYPE' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let filter of filters">
+              <td>{{filter.id}}</td>
+              <td>{{filter.title}}</td>
+              <td>{{filter.diameter}}</td>
+              <td>{{filter.filterType}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>
