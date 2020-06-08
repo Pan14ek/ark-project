@@ -1,0 +1,1 @@
+pg_dump db_name -U db_user -h host -p port > dump[date format yyyy-mm-dd].sql

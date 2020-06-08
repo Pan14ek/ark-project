@@ -24,5 +24,8 @@ data class Filter(@Id
                   var filterType: String? = null,
                   @OneToMany(mappedBy = "filter")
                   @JsonBackReference
-                  var filterUnit: List<FilterUnit>? = null
+                  var filterUnit: List<FilterUnit>? = null,
+                  @OneToMany(mappedBy = "filter")
+                  @JsonBackReference
+                  val filterChemicalSubstances: Set<FilterChemicalSubstances>? = null
 )

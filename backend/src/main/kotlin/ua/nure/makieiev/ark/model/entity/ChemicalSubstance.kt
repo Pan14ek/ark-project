@@ -1,10 +1,12 @@
 package ua.nure.makieiev.ark.model.entity
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 @Entity
@@ -16,5 +18,8 @@ data class ChemicalSubstance(@Id
                              @Column(name = "title")
                              var title: String? = null,
                              @Column(name = "formula")
-                             var formula: String? = null
+                             var formula: String? = null,
+                             @OneToMany(mappedBy = "chemicalSubstance")
+                             @JsonBackReference
+                             val filterChemicalSubstances: Set<FilterChemicalSubstances>? = null
 )
