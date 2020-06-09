@@ -8,7 +8,7 @@ import {environment} from '../../../environments/environment.prod';
 export class Service {
 
   protected serviceHttp: HttpClient;
-  protected ENV_URL = environment.apiLocal;
+  protected ENV_URL = environment.apiHerokuBaseUrl;
 
   constructor(private http: HttpClient) {
     this.serviceHttp = http;
