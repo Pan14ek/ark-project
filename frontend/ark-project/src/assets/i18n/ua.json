@@ -8,7 +8,8 @@
     "SIGN_OUT": "Вийти",
     "SIGN_IN": "Увійти",
     "SIGN_UP": "Зареєструватися",
-    "FILTER_WORK_LOG": "Фільтер ворк лог"
+    "FILTER_WORK_LOG": "Фільтер ворк лог",
+    "FILTER_STATISTIC": "Статистика по фільтру"
   },
   "SIGN_IN": {
     "ENTER_TO_APP": "Увійти до системи",

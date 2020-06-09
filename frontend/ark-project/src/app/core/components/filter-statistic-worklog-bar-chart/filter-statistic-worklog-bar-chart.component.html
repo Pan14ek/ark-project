@@ -1,0 +1,36 @@
+<div class="buttons">
+  <button class="button is-link"
+          (click)="showTable()">{{showTableFlag ? 'Close' : 'Show filter work log statistic'}}</button>
+  <button class="button is-link"
+          (click)="showDiagram()">{{showChartDiagramFlag ? 'Close' : 'Show diagram'}}</button>
+</div>
+
+<!-- All roles info -->
+<table class="table" *ngIf="showTableFlag">
+  <thead>
+  <tr>
+    <th>Scan date</th>
+    <th>AVG Temperature</th>
+    <th>Sum filter contamination</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let filterWorkLogsStatistic of filterWorkLogsStatistics">
+    <td>{{filterWorkLogsStatistic.scanDate | date: 'yyyy-MM-dd HH:mm:ss' : '+0'}}</td>
+    <td>{{filterWorkLogsStatistic.avgTemperature}}</td>
+    <td>{{filterWorkLogsStatistic.sumFilterContamination}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<div class="chart-wrapper" *ngIf="showChartDiagramFlag">
+  <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+  </canvas>
+</div>

@@ -22,6 +22,8 @@
          *ngIf="authorizeFlag">{{'HEADER.FILTER_WORK_LOG' | translate }}</a>
       <a class="navbar-item" routerLink="/user/schedule" *ngIf="authorizeFlag">{{'HEADER.SCHEDULE' | translate }}</a>
       <a class="navbar-item" routerLink="/admin/panel" *ngIf="adminPanelFlag">{{'HEADER.ADMIN_PANEL' | translate }}</a>
+      <a class="navbar-item" routerLink="/filter/work/log/statistic"
+         *ngIf="authorizeFlag">{{'HEADER.FILTER_STATISTIC' | translate }}</a>
     </div>
 
     <div class="navbar-end">

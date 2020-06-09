@@ -31,8 +31,10 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "bootstrap": "^4.4.0",
     "bulma": "^0.8.2",
+    "chart.js": "^2.9.3",
     "fullcalendar": "^3.10.2",
-    "moment": "^2.26.0",
+    "moment": "^2.25.0",
+    "ng2-charts": "^2.3.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.13.0",
     "zone.js": "~0.10.2"

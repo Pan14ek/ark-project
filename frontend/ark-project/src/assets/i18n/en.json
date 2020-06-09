@@ -8,7 +8,8 @@
     "SIGN_OUT": "Sign out",
     "SIGN_IN": "Sign in",
     "SIGN_UP": "Sign up",
-    "FILTER_WORK_LOG": "Filter work log"
+    "FILTER_WORK_LOG": "Filter work log",
+    "FILTER_STATISTIC": "Filter statistic"
   },
   "SIGN_IN": {
     "ENTER_TO_APP": "Sign in to Factory application",

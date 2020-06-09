@@ -33,6 +33,8 @@ import {FullCalendarModule} from '@fullcalendar/angular';
 import {ConfirmWorkdayComponent} from './components/confirm-workday/confirm-workday.component';
 import {FilterpanelComponent} from './components/filterpanel/filterpanel.component';
 import {ChemicalSubstancesPanelComponent} from './components/chemicalsubstancespanel/chemical-substances-panel.component';
+import {FilterStatisticWorklogBarChartComponent} from './components/filter-statistic-worklog-bar-chart/filter-statistic-worklog-bar-chart.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import {ChemicalSubstancesPanelComponent} from './components/chemicalsubstancesp
     UnitInfoComponent,
     ConfirmWorkdayComponent,
     FilterpanelComponent,
-    ChemicalSubstancesPanelComponent
+    ChemicalSubstancesPanelComponent,
+    FilterStatisticWorklogBarChartComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +72,8 @@ import {ChemicalSubstancesPanelComponent} from './components/chemicalsubstancesp
     MatDatepickerModule,
     ReactiveFormsModule,
     TranslateModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ChartsModule
   ],
   exports: [
     HeaderComponent,

@@ -16,6 +16,7 @@ import {UnitInfoComponent} from './core/components/unit-info/unit-info.component
 import {ConfirmWorkdayComponent} from './core/components/confirm-workday/confirm-workday.component';
 import {FilterpanelComponent} from './core/components/filterpanel/filterpanel.component';
 import {ChemicalSubstancesPanelComponent} from './core/components/chemicalsubstancespanel/chemical-substances-panel.component';
+import {FilterStatisticWorklogBarChartComponent} from './core/components/filter-statistic-worklog-bar-chart/filter-statistic-worklog-bar-chart.component';
 
 const routes: Routes = [
   {
@@ -85,6 +86,10 @@ const routes: Routes = [
   {
     path: 'confirm/work/day',
     component: ConfirmWorkdayComponent
+  },
+  {
+    path: 'filter/work/log/statistic',
+    component: FilterStatisticWorklogBarChartComponent
   }
 ];
 
