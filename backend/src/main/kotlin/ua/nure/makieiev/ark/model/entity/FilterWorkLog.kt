@@ -11,26 +11,20 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
-import javax.validation.constraints.NotNull
 
 @Entity
-@Table(name = "Filter_work_log", schema = "public")
-data class FilterWorkLog(@NotNull
-                         @Id
+@Table(name = "filter_work_log", schema = "public")
+data class FilterWorkLog(@Id
                          @GeneratedValue(strategy = GenerationType.IDENTITY)
                          @Column(name = "Id_filter_work_log")
                          var id: Long? = null,
-                         @NotNull
                          @JsonManagedReference
                          @ManyToOne
                          @JoinColumn(name = "Id_filter_unit")
                          var filterUnit: FilterUnit? = null,
-                         @NotNull
                          @Column(name = "Scan_date_time")
                          var scanDateTime: LocalDateTime? = null,
-                         @NotNull
                          @Column(name = "Temperature")
                          var temperature: String? = null,
-                         @NotNull
                          @Column(name = "Filter_contamination")
                          var filterContamination: BigDecimal? = null)

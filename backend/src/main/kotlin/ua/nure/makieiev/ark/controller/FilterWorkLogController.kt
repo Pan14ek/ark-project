@@ -59,4 +59,10 @@ class FilterWorkLogController @Autowired constructor(private val filterUnitServi
         return filterWorkLog
     }
 
+    @PreAuthorize("hasAnyRole('RegisteredUser', 'Administration')")
+    @GetMapping("/statistic")
+    fun getStatistic(): ResponseEntity<Any> {
+        return ResponseEntity(filterWorkLogService.getStatisticByFilerWorkLog(), OK)
+    }
+
 }

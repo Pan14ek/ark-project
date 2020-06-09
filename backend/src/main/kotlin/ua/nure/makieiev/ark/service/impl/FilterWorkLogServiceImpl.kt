@@ -3,12 +3,14 @@ package ua.nure.makieiev.ark.service.impl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import ua.nure.makieiev.ark.model.entity.FilterWorkLog
+import ua.nure.makieiev.ark.model.entity.FilterWorkLogStatistic
 import ua.nure.makieiev.ark.repository.FilterWorkLogRepository
+import ua.nure.makieiev.ark.repository.FilterWorkLogStatisticRepository
 import ua.nure.makieiev.ark.service.FilterWorkLogService
 import java.util.*
 
 @Service
-class FilterWorkLogServiceImpl @Autowired constructor(private val filterWorkLogRepository: FilterWorkLogRepository) : FilterWorkLogService {
+class FilterWorkLogServiceImpl @Autowired constructor(private val filterWorkLogRepository: FilterWorkLogRepository, private val filterWorkLogStatisticRepository: FilterWorkLogStatisticRepository) : FilterWorkLogService {
 
     override fun save(filterWorkLog: FilterWorkLog): FilterWorkLog {
         return filterWorkLogRepository.save(filterWorkLog)
@@ -24,6 +26,10 @@ class FilterWorkLogServiceImpl @Autowired constructor(private val filterWorkLogR
 
     override fun findAllByFilterUnitId(filterUnitId: Long): List<FilterWorkLog> {
         return filterWorkLogRepository.findAllByFilterUnitId(filterUnitId)
+    }
+
+    override fun getStatisticByFilerWorkLog(): List<FilterWorkLogStatistic> {
+        return filterWorkLogStatisticRepository.getStatisticByFilerWorkLog()
     }
 
 }
